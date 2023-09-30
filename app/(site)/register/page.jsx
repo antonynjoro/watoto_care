@@ -5,11 +5,15 @@ import GoogleLoginButton from "@/app/components/GoogleLoginButton";
 import { redirect } from 'next/navigation'
 
 
-export default function Register() {
-  const session = getServerSession(authOptions);
+
+export default async function Register() {
+  const session = await getServerSession(authOptions);
+
 
   //redirrect to dashboard if user is logged in
   if (session) {
+    console.log(session)
+    console.log("redirecting")
     redirect("/dashboard");
   }
 
@@ -59,7 +63,7 @@ export default function Register() {
                 </div>
 
                 <div className="mt-6 grid grid-cols-2 gap-4">
-                  <GoogleLoginButton />
+                  <GoogleLoginButton callbackUrl={"/create-profile"}/>
                 </div>
               </div>
             </div>

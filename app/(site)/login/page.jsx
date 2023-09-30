@@ -56,7 +56,7 @@ export default async function LoginPage() {
                   </div>
   
                   <div className="mt-6 grid grid-cols-2 gap-4">
-                    <GoogleLoginButton />
+                    <GoogleLoginButton  />
   
                     
                   </div>

@@ -9,13 +9,17 @@ generator client {
 
 model User {
   id                            String         @id @default(auto()) @map("_id") @db.ObjectId
-  email                         String         @unique 
+  email                         String         @unique
+  username                      String?        @unique
   name                          String
   hashed_password               String?
   emailVerified                 String?
   phone                         String?
+  city                          String?
+  state                         String?
+  country                       String?
   image                         String?
-  profile_image_alt             String?
+  imageAlt                      String?
   bio                           String?
   highlights                    String[]
   testimonials                  Testimonial[]
