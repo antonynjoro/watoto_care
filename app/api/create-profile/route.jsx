@@ -45,6 +45,13 @@ export async function POST(request) {
       throw new Error("User does not exist");
     }
 
+    // if the image is a google url, change the url to a larger image
+    const googleImagePattern = /lh\d\.googleusercontent\.com/;
+    if (googleImagePattern.test(image)) {
+        image = image.replace(/=s\d+-c/, `=s${1000}-c`);
+    }
+
+
     // // if the image is a uploaded image and not a url, upload the image to s3
     // if (image.startsWith("blob")) {
     //     const s3 = new AWS.S3({

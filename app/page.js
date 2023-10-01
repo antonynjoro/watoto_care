@@ -1,8 +1,8 @@
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
-import User from "./components/user";
-import TabGroup from "./components/TabGroup";
+import User from "./(site)/components/user";
+import TabGroup from "./(site)/[agentname]/TabGroup";
 
 
 

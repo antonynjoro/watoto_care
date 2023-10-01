@@ -5,7 +5,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 import axios from "axios";
 import toast from "react-hot-toast";
-import CreateProfileForm from "@/app/components/CreateProfileForm";
+import CreateProfileForm from "./CreateProfileForm";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);

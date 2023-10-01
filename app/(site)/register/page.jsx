@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
-import RegisterForm from "../../components/RegisterForm";
-import GoogleLoginButton from "@/app/components/GoogleLoginButton";
+import RegisterForm from "./RegisterForm";
+import GoogleLoginButton from "../components/GoogleLoginButton";
 import { redirect } from 'next/navigation'
 
 

@@ -3,8 +3,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
 import { redirect } from 'next/navigation'
 
-import LoginForm from "../../components/LoginForm"
-import GoogleLoginButton from "@/app/components/GoogleLoginButton";
+import LoginForm from "./LoginForm"
+import GoogleLoginButton from "../components/GoogleLoginButton";
 
 
 export default async function LoginPage() {
