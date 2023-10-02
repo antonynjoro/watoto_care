@@ -71,9 +71,7 @@ export default async function Home() {
   return (
     <div className="bg-white">
       <div className="mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        {/* Agent */}
         <div className="lg:grid lg:grid-cols-7 lg:grid-rows-1 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
-          {/* Agent image */}
           <div className="lg:col-span-4 lg:row-end-1">
             <div className="aspect-h-3 aspect-w-3 overflow-hidden rounded-lg bg-gray-100">
               <img
