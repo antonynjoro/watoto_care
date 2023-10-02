@@ -41,7 +41,7 @@ export const authOptions = {
         if (!user) {
           throw new Error("No user found");
         }
-
+        /// if user has no password
         if (!user.hashed_password) {
           throw new Error("User has no password");
         }
