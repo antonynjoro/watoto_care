@@ -88,8 +88,6 @@ export const authOptions = {
     newUser: "/create-profile",
   },
 
-
-
 };
 
 
