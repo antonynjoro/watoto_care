@@ -16,7 +16,7 @@ export default function DashboardPage(){
                 Sign Out
             </button>
 
-            <p>{session}</p>
+            <p>{JSON.stringify(session)}</p>
         </>
     )
 }

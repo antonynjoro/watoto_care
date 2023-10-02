@@ -13,8 +13,7 @@ export default async function LoginPage() {
     console.log(`Session before redirect: ${session}`)
 
     //redirrect to dashboard if user is logged in
-    if (session.status === "authenticated") {
-      console.log(session)
+    if (session) {
       console.log("redirecting")
       redirect("/dashboard");
     }
