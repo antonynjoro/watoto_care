@@ -10,8 +10,10 @@ import GoogleLoginButton from "../components/GoogleLoginButton";
 export default async function LoginPage() {
     const session = await getServerSession(authOptions);
 
+    console.log(`Session before redirect: ${session}`)
+
     //redirrect to dashboard if user is logged in
-    if (session) {
+    if (session.status === "authenticated") {
       console.log(session)
       console.log("redirecting")
       redirect("/dashboard");

@@ -9,10 +9,12 @@ import { redirect } from 'next/navigation'
 export default async function Register() {
   const session = await getServerSession(authOptions);
 
+  console.log(`Session before redirect: ${session}`)
+  console.log(`session.status ${session.status}`)
 
   //redirrect to dashboard if user is logged in
-  if (session) {
-    console.log(session)
+  if (session.status === "authenticated") {
+
     console.log("redirecting")
     redirect("/dashboard");
   }
