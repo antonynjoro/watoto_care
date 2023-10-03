@@ -5,7 +5,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
 import User from "../components/user";
 import TabGroup from "./TabGroup";
-import { fetchAgentData } from "./actions";
 
 
 const agent = {
@@ -255,7 +254,7 @@ const testimonials = {
 export default async function AgentProfile({ params }) {
     const session = await getServerSession(authOptions);
     const { agentname } = params;
-    const data = await fetchAgentData(agentname);
+    const data = await fetch(`http://localhost:3000/api/agents/${agentname}`); 
 
     if (!data.ok) {
         return <div>Agent not found</div>;
@@ -290,7 +289,7 @@ export default async function AgentProfile({ params }) {
             <div className="flex flex-col-reverse">
               <div className="mt-4">
                 <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                  {agentData.name}
+                  {agent.name}
                 </h1>
 
                 <h2 id="information-heading" className="sr-only">
@@ -301,11 +300,6 @@ export default async function AgentProfile({ params }) {
                 </p>
                 <p className="mt-1 text-sm text-gray-500">
                   Email: {agentData.email}
-                </p>
-
-                <p>
-                  json Data
-                  {JSON.stringify(agentData)}
                 </p>
               </div>
             </div>
