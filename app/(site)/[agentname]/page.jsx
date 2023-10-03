@@ -5,7 +5,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
 import User from "../components/user";
 import TabGroup from "./TabGroup";
-import { fetchAgentData } from "./actions";
 
 
 const agent = {
@@ -255,7 +254,7 @@ const testimonials = {
 export default async function AgentProfile({ params }) {
     const session = await getServerSession(authOptions);
     const { agentname } = params;
-    const data = await fetchAgentData(agentname);
+    const data = await fetch(`http://localhost:3000/api/agents/${agentname}`);
 
     if (!data.ok) {
         return <div>Agent not found</div>;
