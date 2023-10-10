@@ -65,7 +65,7 @@ export default async function Register() {
                 </div>
 
                 <div className="mt-6 grid grid-cols-2 gap-4">
-                  <GoogleLoginButton callbackUrl={"/create-profile"}/>
+                  <GoogleLoginButton callbackUrl={"/register-daycare"}/>
                 </div>
               </div>
             </div>

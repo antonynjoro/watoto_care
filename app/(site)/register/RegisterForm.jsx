@@ -20,8 +20,8 @@ export default function RegisterForm() {
 
     axios
       .post("/api/register", body)
-      .then(() => toast.success("User created successfully"))
-      .catch(() => toast.error("User creation failed"));
+      .then(() => toast.success("Account created successfully"))
+      .catch(() => toast.error("Account creation failed"));
   }
 
   return (
