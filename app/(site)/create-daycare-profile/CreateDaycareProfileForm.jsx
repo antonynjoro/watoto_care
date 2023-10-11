@@ -7,6 +7,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { ImageUploadZone } from "../components/UploadThingWidgets";
 import DaycareImage from "./DaycareImage";
+import TitleDescriptionToggle from "../components/TitleDescriptionToggle";
 
 export default function CreateDaycareProfileForm({ session }) {
   const [dayCareData, setDayCareData] = useState({
@@ -18,9 +19,10 @@ export default function CreateDaycareProfileForm({ session }) {
     city: "",
     neighborhood: "",
     state: "",
-    country: "",
+    country: "Canada",
     zip: "",
     website: "",
+    licensingStatus: false,
     description: "",
     highlights: [],
   });
@@ -30,9 +32,11 @@ export default function CreateDaycareProfileForm({ session }) {
     email: "",
   });
 
-  const [daycareImages, setDaycareImages] = useState([
-    "https://lh3.googleusercontent.com/a/ACg8ocK9m_VrjjYOAhIWYRU2AxwWmK9DfXrbPJs46crBfByvx7-J=s1000-c",
-  ]);
+  const [daycareImages, setDaycareImages] = useState([]);
+
+
+
+
 
   function deleteImage(imageUrl) {
     setDaycareImages((prevState) => {
@@ -49,6 +53,7 @@ export default function CreateDaycareProfileForm({ session }) {
     const body = {
       slug: dayCareData.slug,
       description: dayCareData.description,
+      licensingStatus: dayCareData.licensingStatus,
       name: dayCareData.name,
       email: dayCareData.email,
       phone: dayCareData.phone,
@@ -62,6 +67,10 @@ export default function CreateDaycareProfileForm({ session }) {
       ownerName: userData.name,
       ownerEmail: userData.email,
     };
+
+    
+
+
 
     axios
       .post("/api/create-daycare-profile", body)
@@ -88,6 +97,11 @@ export default function CreateDaycareProfileForm({ session }) {
       }));
     }
   }, [session]);
+
+  useEffect(() => {
+    console.log("licensingStatus:");
+    console.log(dayCareData.licensingStatus); // Should log either true or false
+  }, [dayCareData]);
 
   return (
     <form onSubmit={createDaycare}>
@@ -117,7 +131,7 @@ export default function CreateDaycareProfileForm({ session }) {
                     id="username"
                     autoComplete="username"
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    placeholder="janesmith"
+                    placeholder="totzdaycare"
                     value={dayCareData.slug}
                     onChange={(e) =>
                       setDayCareData((prevState) => ({
@@ -154,6 +168,35 @@ export default function CreateDaycareProfileForm({ session }) {
                     }))
                   }
                 />
+              </div>
+            </div>
+
+            <div className="sm:col-span-4">
+              <label
+                htmlFor="licencing-status"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Is your daycare licenced?
+              </label>
+              <div className="mt-2">
+                <label htmlFor="licensing-status" className=" sr-only">
+                  Licensing Status:
+                </label>
+                <select
+                  id="licensing-status"
+                  name="licensing-status"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-gray-600  sm:text-sm sm:leading-6"
+                  value={dayCareData.licensingStatus.toString()}
+                  onChange={(e) =>
+                    setDayCareData((prevState) => ({
+                      ...prevState,
+                      licensingStatus: e.target.value === "true",
+                    }))
+                  }
+                >
+                  <option value="false">No. It is not yet Licenced</option>
+                  <option value="true">Yes. It is Licenced.</option>
+                </select>
               </div>
             </div>
 
@@ -197,7 +240,7 @@ export default function CreateDaycareProfileForm({ session }) {
           </p>
           <div className="flex flex-col items-stretch">
             <ImageUploadZone setImageUrls={setDaycareImages} />
-            <div className="flex flex-row wrap gap-4 my-4">
+            <div className="flex flex-row flex-wrap gap-4 my-4">
               {daycareImages &&
                 daycareImages.map((imageUrl) => (
                   <DaycareImage
@@ -207,6 +250,11 @@ export default function CreateDaycareProfileForm({ session }) {
                     deleteImage={deleteImage}
                   />
                 ))}
+              {daycareImages <= 3 && (
+                <p className="text-red-800 text-xs font-medium">
+                  Please upload at least 3 images
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -540,7 +588,7 @@ export default function CreateDaycareProfileForm({ session }) {
         </button>
         <button
           type="submit"
-          className="rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
+          className="rounded-md bg-gray-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
         >
           Save
         </button>

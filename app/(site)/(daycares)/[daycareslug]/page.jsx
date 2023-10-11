@@ -5,6 +5,7 @@ import { StarIcon } from "@heroicons/react/20/solid";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../../api/auth/[...nextauth]/route";
 import NavBar from "../../components/NavBar";
+import { notFound } from 'next/navigation'
 
 
 const images = [
@@ -76,7 +77,24 @@ export default async function dayCarePage({ params }) {
   const { daycareslug } = params;
 
   const response = await fetch("http://localhost:3000/api/daycares/" + daycareslug);
+  console.log(`Response from the fetch: `);
+  
+
+  if (response.status === 404) {
+    notFound();
+  }
+  else if (response.status === 500) {
+    throw new Error("Internal Server Error");
+  }
+
   const data = await response.json();
+
+  console.log(`Data from the fetch: `);
+  console.log(data);
+
+  if (data === null) {
+    notFound();
+  }
 
 
   console.log(`Data from the fetch: `);
@@ -85,6 +103,9 @@ export default async function dayCarePage({ params }) {
 
   return (
     <>
+      <p>
+        {JSON.stringify(data)}
+      </p>
       <div className="min-h-full">
         {/* Page header */}
         <NavBar />
@@ -93,28 +114,30 @@ export default async function dayCarePage({ params }) {
         <main className="py-10">
           {/* Main container */}
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 >Daycare</h2>
+            <h2 className="pb-3 text-lg">
+              {data.name}
+            </h2>
             {/* Image gallery */}
             <div className="relative mx-auto max-w-full  lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-4 md:items-stretch flex overflow-hidden rounded-lg">
               <div className="lg:aspect-h-3 lg:aspect-w-4 aspect-w-4 aspect-h-2 w-full    overflow-hidden  lg:block">
                 <img
-                  src={images[0].src}
-                  alt={images[0].alt}
+                  src={data.images[0]}
+                  alt={data.name}
                   className="h-full w-full object-cover object-center"
                 />
               </div>
               <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-4 lg:gap-x-4">
                 <div className="aspect-h-1 aspect-w-4 overflow-hidden ">
                   <img
-                    src={images[1].src}
-                    alt={images[1].alt}
+                    src={data.images[1]}
+                    alt={data.name}
                     className="h-full w-full object-cover object-center"
                   />
                 </div>
                 <div className="aspect-h-1 aspect-w-4 overflow-hidden ">
                   <img
-                    src={images[2].src}
-                    alt={images[2].alt}
+                    src={data.images[2]}
+                    alt={data.name}
                     className="h-full w-full object-cover object-center"
                   />
                 </div>

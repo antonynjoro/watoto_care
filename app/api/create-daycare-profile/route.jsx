@@ -3,47 +3,35 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
     try {
-        const body  = await request.json();
+        const body = await request.json();
 
-        let {
-            slug,
-            description,
-            name,
-            email,
-            phone,
-            neighborhood,
-            city,
-            state,
-            country,
-            zip,
-            images,
-            highlights,
-            ownerName,
-            ownerEmail,
-        } = body;
+        const requiredFields = [
+            "slug",
+            "description",
+            "licensingStatus",
+            "name",
+            "email",
+            "phone",
+            "neighborhood",
+            "city",
+            "state",
+            "country",
+            "zip",
+            "images",
+            "highlights",
+            "ownerName",
+            "ownerEmail"
+        ];
 
-        if (
-            !slug ||
-            !description ||
-            !name ||
-            !email ||
-            !phone ||
-            !neighborhood ||
-            !city ||
-            !state ||
-            !country ||
-            !zip ||
-            !images ||
-            !highlights ||
-            !ownerName ||
-            !ownerEmail
-        ) {
-            return new NextResponse(`Missing fields ${JSON.stringify(body)}`, { status: 400 });
+        const missingFields = requiredFields.filter(field => body[field] === undefined || body[field] === null);
+
+        if (missingFields.length > 0) {
+            return new NextResponse(`Missing fields: ${missingFields.join(', ')}`, { status: 400 });
         }
 
         const daycare = await prisma.daycares.findUnique({
             where: {
-                slug,
+                slug: body.slug,
             },
         });
 
@@ -55,27 +43,13 @@ export async function POST(request) {
         // create the daycare
         const newDaycare = await prisma.daycares.create({
             data: {
-                slug,
-                description,
-                name,
-                email,
-                phone,
-                neighborhood,
-                city,
-                state,
-                country,
-                zip,
-                images,
-                highlights,
-                ownerName,
-                ownerEmail,
+                ...body
             },
         });
 
         return new NextResponse(JSON.stringify(newDaycare), { status: 200 });
 
-    }
-    catch (error) {
+    } catch (error) {
         console.log(error);
         return new NextResponse(error.message, { status: 500 });
     }

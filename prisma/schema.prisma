@@ -75,6 +75,7 @@ model Daycares {
   website           String?
   images            String[]
   description       String?
+  licensingStatus   Boolean?
   highlights        String[]
   testimonials      DaycareTestimonials[]
   date_created      DateTime      @default(now())

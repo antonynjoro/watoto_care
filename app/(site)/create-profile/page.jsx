@@ -1,7 +1,7 @@
 
 
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "../../api/auth/[...nextauth]/route"
 
 import axios from "axios";
 import toast from "react-hot-toast";

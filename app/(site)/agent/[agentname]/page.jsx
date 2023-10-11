@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../../api/auth/[...nextauth]/route";
-import User from "../components/user";
+import { authOptions } from "../../../api/auth/[...nextauth]/route";
+import User from "../../components/user";
 import TabGroup from "./TabGroup";
 import AboutSection from "./AboutSection";
+import {notFound} from 'next/navigation'
 
 
 const agent = {
@@ -258,13 +259,13 @@ export default async function AgentProfile({ params }) {
     const data = await fetch(`http://localhost:3000/api/agents/${agentname}`); 
 
     if (!data.ok) {
-        return <div>Agent not found</div>;
+        notFound();
     }
 
     const agentData = await data.json();
     
     if (!agentData) {
-        return <div>Agent not found</div>;
+        notFound();
     }
 
   return (
