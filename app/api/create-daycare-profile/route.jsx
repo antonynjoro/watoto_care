@@ -20,7 +20,15 @@ export async function POST(request) {
             "images",
             "highlights",
             "ownerName",
-            "ownerEmail"
+            "ownerEmail",
+            "ownerPhoto",
+            "openingTime",
+            "closingTime",
+            "firstDay",
+            "lastDay",
+            "capacity",
+            "minimumAgeMonths",
+            "maximumAgeYears",
         ];
 
         const missingFields = requiredFields.filter(field => body[field] === undefined || body[field] === null);

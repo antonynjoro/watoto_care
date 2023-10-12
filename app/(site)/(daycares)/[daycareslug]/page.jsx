@@ -165,7 +165,7 @@ export default async function dayCarePage({ params }) {
               {/* Title of the page */}
               <div className="text-left col-span-2 ">
                 <h1 className=" text-xl text-gray-900 sm:text-2xl">
-                  Unlicenced Daycare in Stonebridge (Saskatoon)
+                  {data.licenseStatus? "Licenced": "Unlicenced"} Daycare in {data.neighborhood} ({data.city})
                 </h1>
 
                 <div className="group flex items-center mt-2 text-gray-500">
@@ -198,7 +198,7 @@ export default async function dayCarePage({ params }) {
                     </div>
                     <div className="ml-3">
                       <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
-                        Krystal Bonador
+                        {data.ownerName}
                       </p>
                       <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
                         Last seen 2 hours ago

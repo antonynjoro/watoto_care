@@ -25,6 +25,13 @@ export default function CreateDaycareProfileForm({ session }) {
     licensingStatus: false,
     description: "",
     highlights: [],
+    openingTime: "08:00 AM",
+    closingTime: "05:00 PM",
+    firstDay: "Monday",
+    lastDay: "Friday",
+    capacity: 2,
+    minimumAgeMonths: 0,
+    maximumAgeYears: 12,
   });
 
   const [userData, setUserData] = useState({
@@ -34,7 +41,13 @@ export default function CreateDaycareProfileForm({ session }) {
 
   const [daycareImages, setDaycareImages] = useState([]);
 
-
+  const sanitizeSlug = (input) => {
+    // Convert to lowercase first
+    let lowerCased = input.toLowerCase();
+    
+    // Remove spaces and symbols, keeping only alphanumeric characters
+    return lowerCased.replace(/[^a-z0-9]/g, '');
+  }
 
 
 
@@ -66,6 +79,14 @@ export default function CreateDaycareProfileForm({ session }) {
       highlights: dayCareData.highlights,
       ownerName: userData.name,
       ownerEmail: userData.email,
+      ownerPhoto: session.user.image,
+      openingTime: dayCareData.openingTime,
+      closingTime: dayCareData.closingTime,
+      firstDay: dayCareData.firstDay,
+      lastDay: dayCareData.lastDay,
+      capacity: dayCareData.capacity,
+      minimumAgeMonths: dayCareData.minimumAgeMonths,
+      maximumAgeYears: dayCareData.maximumAgeYears,
     };
 
     
@@ -98,10 +119,7 @@ export default function CreateDaycareProfileForm({ session }) {
     }
   }, [session]);
 
-  useEffect(() => {
-    console.log("licensingStatus:");
-    console.log(dayCareData.licensingStatus); // Should log either true or false
-  }, [dayCareData]);
+
 
   return (
     <form onSubmit={createDaycare}>
@@ -133,12 +151,13 @@ export default function CreateDaycareProfileForm({ session }) {
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     placeholder="totzdaycare"
                     value={dayCareData.slug}
-                    onChange={(e) =>
+                    onChange={(e) => {
+                      const sanitizedValue = sanitizeSlug(e.target.value);
                       setDayCareData((prevState) => ({
                         ...prevState,
-                        slug: e.target.value,
-                      }))
-                    }
+                        slug: sanitizedValue,
+                      }));
+                    }}
                   />
                 </div>
                 <p className="mt-2 text-xs text-gray-500">
@@ -200,6 +219,310 @@ export default function CreateDaycareProfileForm({ session }) {
               </div>
             </div>
 
+            <div className="flex flex-col col-span-3">
+              <p className=" text-sm">Hours of Operation</p>
+              <div className="flex gap-4">
+                <div className="sm:col-span-4">
+                  <label
+                    htmlFor="opening-hours"
+                    className=" sr-only block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Opening Hours
+                  </label>
+                  <div className="mt-2">
+                    <label htmlFor="opening-hours" className="sr-only">
+                      Opening Hours:
+                    </label>
+                    <select
+                      id="opening-hours"
+                      name="opening-hours"
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
+                      value={dayCareData.openingTime}
+                      onChange={(e) =>
+                        setDayCareData((prevState) => ({
+                          ...prevState,
+                          openingTime: e.target.value,
+                        }))
+                      }
+                    >
+                      <option value="00:00 AM">12:00 AM</option>
+                      <option value="00:30 AM">12:30 AM</option>
+                      <option value="01:00 AM">01:00 AM</option>
+                      <option value="01:30 AM">01:30 AM</option>
+                      <option value="02:00 AM">02:00 AM</option>
+                      <option value="02:30 AM">02:30 AM</option>
+                      <option value="03:00 AM">03:00 AM</option>
+                      <option value="03:30 AM">03:30 AM</option>
+                      <option value="04:00 AM">04:00 AM</option>
+                      <option value="04:30 AM">04:30 AM</option>
+                      <option value="05:00 AM">05:00 AM</option>
+                      <option value="05:30 AM">05:30 AM</option>
+                      <option value="06:00 AM">06:00 AM</option>
+                      <option value="06:30 AM">06:30 AM</option>
+                      <option value="07:00 AM">07:00 AM</option>
+                      <option value="07:30 AM">07:30 AM</option>
+                      <option value="08:00 AM">08:00 AM</option>
+                      <option value="08:30 AM">08:30 AM</option>
+                      <option value="09:00 AM">09:00 AM</option>
+                      <option value="09:30 AM">09:30 AM</option>
+                      <option value="10:00 AM">10:00 AM</option>
+                      <option value="10:30 AM">10:30 AM</option>
+                      <option value="11:00 AM">11:00 AM</option>
+                      <option value="11:30 AM">11:30 AM</option>
+                      <option value="12:00 PM">12:00 PM</option>
+                      <option value="12:30 PM">12:30 PM</option>
+                      <option value="01:00 PM">01:00 PM</option>
+                      <option value="01:30 PM">01:30 PM</option>
+                      <option value="02:00 PM">02:00 PM</option>
+                      <option value="02:30 PM">02:30 PM</option>
+                      <option value="03:00 PM">03:00 PM</option>
+                      <option value="03:30 PM">03:30 PM</option>
+                      <option value="04:00 PM">04:00 PM</option>
+                      <option value="04:30 PM">04:30 PM</option>
+                      <option value="05:00 PM">05:00 PM</option>
+                      <option value="05:30 PM">05:30 PM</option>
+                      <option value="06:00 PM">06:00 PM</option>
+                      <option value="06:30 PM">06:30 PM</option>
+                      <option value="07:00 PM">07:00 PM</option>
+                      <option value="07:30 PM">07:30 PM</option>
+                      <option value="08:00 PM">08:00 PM</option>
+                      <option value="08:30 PM">08:30 PM</option>
+                      <option value="09:00 PM">09:00 PM</option>
+                      <option value="09:30 PM">09:30 PM</option>
+                      <option value="10:00 PM">10:00 PM</option>
+                      <option value="10:30 PM">10:30 PM</option>
+                      <option value="11:00 PM">11:00 PM</option>
+                      <option value="11:30 PM">11:30 PM</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="sm:col-span-4">
+                  <label
+                    htmlFor="closing-hours"
+                    className=" sr-only block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Closing Hours
+                  </label>
+                  <div className="mt-2">
+                    <label htmlFor="closing-hours" className="sr-only">
+                      Closing Hours:
+                    </label>
+                    <select
+                      id="closing-hours"
+                      name="closing-hours"
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
+                      value={dayCareData.closingTime}
+                      onChange={(e) =>
+                        setDayCareData((prevState) => ({
+                          ...prevState,
+                          closingTime: e.target.value,
+                        }))
+                      }
+                    >
+                      <option value="12:00 AM">12:00 AM</option>
+                      <option value="12:30 AM">12:30 AM</option>
+                      <option value="01:00 AM">01:00 AM</option>
+                      <option value="01:30 AM">01:30 AM</option>
+                      <option value="02:00 AM">02:00 AM</option>
+                      <option value="02:30 AM">02:30 AM</option>
+                      <option value="03:00 AM">03:00 AM</option>
+                      <option value="03:30 AM">03:30 AM</option>
+                      <option value="04:00 AM">04:00 AM</option>
+                      <option value="04:30 AM">04:30 AM</option>
+                      <option value="05:00 AM">05:00 AM</option>
+                      <option value="05:30 AM">05:30 AM</option>
+                      <option value="06:00 AM">06:00 AM</option>
+                      <option value="06:30 AM">06:30 AM</option>
+                      <option value="07:00 AM">07:00 AM</option>
+                      <option value="07:30 AM">07:30 AM</option>
+                      <option value="08:00 AM">08:00 AM</option>
+                      <option value="08:30 AM">08:30 AM</option>
+                      <option value="09:00 AM">09:00 AM</option>
+                      <option value="09:30 AM">09:30 AM</option>
+                      <option value="10:00 AM">10:00 AM</option>
+                      <option value="10:30 AM">10:30 AM</option>
+                      <option value="11:00 AM">11:00 AM</option>
+                      <option value="11:30 AM">11:30 AM</option>
+                      <option value="12:00 PM">12:00 PM</option>
+                      <option value="12:30 PM">12:30 PM</option>
+                      <option value="01:00 PM">01:00 PM</option>
+                      <option value="01:30 PM">01:30 PM</option>
+                      <option value="02:00 PM">02:00 PM</option>
+                      <option value="02:30 PM">02:30 PM</option>
+                      <option value="03:00 PM">03:00 PM</option>
+                      <option value="03:30 PM">03:30 PM</option>
+                      <option value="04:00 PM">04:00 PM</option>
+                      <option value="04:30 PM">04:30 PM</option>
+                      <option value="05:00 PM">05:00 PM</option>
+                      <option value="05:30 PM">05:30 PM</option>
+                      <option value="06:00 PM">06:00 PM</option>
+                      <option value="06:30 PM">06:30 PM</option>
+                      <option value="07:00 PM">07:00 PM</option>
+                      <option value="07:30 PM">07:30 PM</option>
+                      <option value="08:00 PM">08:00 PM</option>
+                      <option value="08:30 PM">08:30 PM</option>
+                      <option value="09:00 PM">09:00 PM</option>
+                      <option value="09:30 PM">09:30 PM</option>
+                      <option value="10:00 PM">10:00 PM</option>
+                      <option value="10:30 PM">10:30 PM</option>
+                      <option value="11:00 PM">11:00 PM</option>
+                      <option value="11:30 PM">11:30 PM</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col col-span-3">
+              <p className=" text-sm">Days</p>
+              <div className="flex gap-4">
+                <div className="sm:col-span-4">
+                  <label
+                    htmlFor="first-day"
+                    className=" sr-only block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    First Day
+                  </label>
+                  <div className="mt-2">
+                    <label htmlFor="first-day" className="sr-only">
+                      First Day:
+                    </label>
+                    <select
+                      id="first-day"
+                      name="first-day"
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
+                      value={dayCareData.firstDay}
+                      onChange={(e) =>
+                        setDayCareData((prevState) => ({
+                          ...prevState,
+                          firstDay: e.target.value,
+                        }))
+                      }
+                    >
+                      <option value="Monday">Monday</option>
+                      <option value="Tuesday">Tuesday</option>
+                      <option value="Wednesday">Wednesday</option>
+                      <option value="Thursday">Thursday</option>
+                      <option value="Friday">Friday</option>
+                      <option value="Saturday">Saturday</option>
+                      <option value="Sunday">Sunday</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="sm:col-span-4">
+                  <label
+                    htmlFor="last-day"
+                    className=" sr-only block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Last Day
+                  </label>
+                  <div className="mt-2">
+                    <label htmlFor="last-day" className="sr-only">
+                      Last Day:
+                    </label>
+                    <select
+                      id="last-day"
+                      name="last-day"
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
+                      value={dayCareData.lastDay}
+                      onChange={(e) =>
+                        setDayCareData((prevState) => ({
+                          ...prevState,
+                          lastDay: e.target.value,
+                        }))
+                      }
+                    >
+                      <option value="Monday">Monday</option>
+                      <option value="Tuesday">Tuesday</option>
+                      <option value="Wednesday">Wednesday</option>
+                      <option value="Thursday">Thursday</option>
+                      <option value="Friday">Friday</option>
+                      <option value="Saturday">Saturday</option>
+                      <option value="Sunday">Sunday</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="sm:col-span-2">
+              <label
+                htmlFor="minimum-age-months"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Minimum age in Months
+              </label>
+              <div className="mt-2">
+                <input
+                  type="number"
+                  name="minimum-age-months"
+                  id="minimum-age-months"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
+                  min={0}
+                  max={48}
+                  value={dayCareData.minimumAgeMonths}
+                  onChange={(e) =>
+                    setDayCareData((prevState) => ({
+                      ...prevState,
+                      minimumAgeMonths: e.target.value,
+                    }))
+                  }
+                />
+              </div>
+            </div>
+
+            <div className="sm:col-span-2">
+              <label
+                htmlFor="maximum-age-years"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Maximum age in Years
+              </label>
+              <div className="mt-2">
+                <input
+                  type="number"
+                  name="maximum-age-years"
+                  id="maximum-age-years"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
+                  min={0}
+                  max={12}
+                  value={dayCareData.maximumAgeYears}
+                  onChange={(e) =>
+                    setDayCareData((prevState) => ({
+                      ...prevState,
+                      maximumAgeYears: e.target.value,
+                    }))
+                  }
+                />
+              </div>
+            </div>
+
+            <div className="sm:col-span-2">
+              <label
+                htmlFor="capacity"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Capacity
+              </label>
+              <div className="mt-2">
+                <input
+                  type="number"
+                  name="capacity"
+                  id="capacity"
+                  min={1}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
+                  value={dayCareData.capacity}
+                  onChange={(e) =>
+                    setDayCareData((prevState) => ({
+                      ...prevState,
+                      capacity: e.target.value,
+                    }))
+                  }
+                />
+              </div>
+            </div>
+
             <div className="col-span-full">
               <label
                 htmlFor="about"
@@ -213,7 +536,6 @@ export default function CreateDaycareProfileForm({ session }) {
                   name="about"
                   rows={3}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
-                  defaultValue={""}
                   value={dayCareData.description}
                   onChange={(e) =>
                     setDayCareData((prevState) => ({
@@ -322,17 +644,16 @@ export default function CreateDaycareProfileForm({ session }) {
 
             <div className="sm:col-span-full">
               <label
-                htmlFor="phone"
+                htmlFor="neighborhood"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Neighborhood
               </label>
               <div className="mt-2">
                 <input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  autoComplete="tel"
+                  id="neighborhood"
+                  name="neighborhood"
+                  type="text"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
                   value={dayCareData.neighborhood}
                   onChange={(e) =>
@@ -399,7 +720,7 @@ export default function CreateDaycareProfileForm({ session }) {
             </div>
             <div className="sm:col-span-2">
               <label
-                htmlFor="region"
+                htmlFor="zip"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Zip / Postal Code
@@ -407,9 +728,9 @@ export default function CreateDaycareProfileForm({ session }) {
               <div className="mt-2">
                 <input
                   type="text"
-                  name="region"
-                  id="region"
-                  autoComplete="address-level1"
+                  name="zip"
+                  id="zip"
+                  autoComplete="postal-code"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
                   value={dayCareData.zip}
                   onChange={(e) =>

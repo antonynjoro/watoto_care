@@ -78,6 +78,14 @@ model Daycares {
   licensingStatus   Boolean?
   highlights        String[]
   testimonials      DaycareTestimonials[]
+  ownerPhoto        String?
+  openingTime       String?
+  closingTime       String?
+  firstDay          String?
+  lastDay           String?
+  capacity          Int?
+  minimumAgeMonths  Int?
+  maximumAgeYears   Int?
   date_created      DateTime      @default(now())
 }
 
