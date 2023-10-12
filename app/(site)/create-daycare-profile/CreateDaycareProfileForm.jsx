@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { ImageUploadZone } from "../components/UploadThingWidgets";
+import { ImageUploadZone, ImageUploadButton } from "../components/UploadThingWidgets";
 import DaycareImage from "./DaycareImage";
 import TitleDescriptionToggle from "../components/TitleDescriptionToggle";
 
@@ -465,7 +465,7 @@ export default function CreateDaycareProfileForm({ session }) {
                   onChange={(e) =>
                     setDayCareData((prevState) => ({
                       ...prevState,
-                      minimumAgeMonths: e.target.value,
+                      minimumAgeMonths: parseInt(e.target.value, 10) || 0, 
                     }))
                   }
                 />
@@ -491,7 +491,7 @@ export default function CreateDaycareProfileForm({ session }) {
                   onChange={(e) =>
                     setDayCareData((prevState) => ({
                       ...prevState,
-                      maximumAgeYears: e.target.value,
+                      maximumAgeYears: parseInt(e.target.value, 10) || 0,
                     }))
                   }
                 />
@@ -516,7 +516,7 @@ export default function CreateDaycareProfileForm({ session }) {
                   onChange={(e) =>
                     setDayCareData((prevState) => ({
                       ...prevState,
-                      capacity: e.target.value,
+                      capacity: parseInt(e.target.value, 10) || 0,
                     }))
                   }
                 />

@@ -8,24 +8,7 @@ import NavBar from "../../components/NavBar";
 import { notFound } from 'next/navigation'
 
 
-const images = [
-  {
-    src: "https://images.unsplash.com/photo-1567746455504-cb3213f8f5b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80",
-    alt: "Two each of gray, white, and black shirts laying flat.",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1453749024858-4bca89bd9edc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3440&q=80",
-    alt: "Model wearing plain black basic tee.",
-  },
-  {
-    src: "https://images.unsplash.com/flagged/photo-1570319736696-894f69f52bd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80g",
-    alt: "Model wearing plain gray basic tee.",
-  },
-  {
-    src: "https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg",
-    alt: "Model wearing plain white basic tee.",
-  },
-];
+
 
 const daycare = {
   description: `
@@ -103,9 +86,7 @@ export default async function dayCarePage({ params }) {
 
   return (
     <>
-      <p>
-        {JSON.stringify(data)}
-      </p>
+      <p>{JSON.stringify(data)}</p>
       <div className="min-h-full">
         {/* Page header */}
         <NavBar />
@@ -114,9 +95,7 @@ export default async function dayCarePage({ params }) {
         <main className="py-10">
           {/* Main container */}
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="pb-3 text-lg">
-              {data.name}
-            </h2>
+            <h2 className="pb-3 text-lg">{data.name}</h2>
             {/* Image gallery */}
             <div className="relative mx-auto max-w-full  lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-4 md:items-stretch flex overflow-hidden rounded-lg">
               <div className="lg:aspect-h-3 lg:aspect-w-4 aspect-w-4 aspect-h-2 w-full    overflow-hidden  lg:block">
@@ -165,7 +144,8 @@ export default async function dayCarePage({ params }) {
               {/* Title of the page */}
               <div className="text-left col-span-2 ">
                 <h1 className=" text-xl text-gray-900 sm:text-2xl">
-                  {data.licenseStatus? "Licenced": "Unlicenced"} Daycare in {data.neighborhood} ({data.city})
+                  {data.licenseStatus ? "Licenced" : "Unlicenced"} Daycare in{" "}
+                  {data.neighborhood} ({data.city})
                 </h1>
 
                 <div className="group flex items-center mt-2 text-gray-500">
@@ -226,9 +206,11 @@ export default async function dayCarePage({ params }) {
                     </svg>
                     <div className="flex flex-col">
                       <h3 className="text-md text-gray-900">
-                        Hours: 7:30am - 5:30pm
+                        Hours: {data.openingTime} - {data.closingTime}
                       </h3>
-                      <p className="text-sm text-gray-500 ">Monday - Friday</p>
+                      <p className="text-sm text-gray-500 ">
+                        {data.firstDay} - {data.lastDay}
+                      </p>
                     </div>
                   </div>
 
@@ -255,7 +237,7 @@ export default async function dayCarePage({ params }) {
 
                     <div className="flex flex-col ">
                       <h3 className="text-md text-gray-900">
-                        Stonebridge, Saskatoon
+                        {data.neighborhood}, {data.city}
                       </h3>
                       <p className="text-sm text-gray-500 ">1.5 miles away</p>
                     </div>
@@ -268,10 +250,9 @@ export default async function dayCarePage({ params }) {
                     Description
                   </h2>
 
-                  <div
-                    className="prose prose-sm mt-4 text-gray-500"
-                    dangerouslySetInnerHTML={{ __html: daycare.description }}
-                  />
+                  <div className="prose prose-sm mt-4 text-gray-500">
+                    {data.description}
+                  </div>
                 </div>
 
                 <div className="mt-8 border-t border-gray-200 pt-8">
@@ -281,7 +262,7 @@ export default async function dayCarePage({ params }) {
 
                   <div className="prose prose-sm mt-4 text-gray-500">
                     <ul role="list">
-                      {daycare.details.map((item) => (
+                      {data.highlights.map((item) => (
                         <li key={item}>{item}</li>
                       ))}
                     </ul>
