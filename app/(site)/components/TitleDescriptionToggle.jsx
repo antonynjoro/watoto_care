@@ -23,8 +23,8 @@ export default function TitleDescriptionToggle({labelText, descriptionText, togg
         checked={enabled}
         onChange={setEnabled}
         className={classNames(
-          enabled ? 'bg-indigo-600' : 'bg-gray-200',
-          'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2'
+          enabled ? 'bg-flame-600' : 'bg-gray-200',
+          'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-flame-600 focus:ring-offset-2'
         )}
       >
         <span

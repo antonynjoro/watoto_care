@@ -86,7 +86,7 @@ export default async function dayCarePage({ params }) {
 
   return (
     <>
-      <p>{JSON.stringify(data)}</p>
+      
       <div className="min-h-full">
         {/* Page header */}
         <NavBar />
@@ -270,7 +270,7 @@ export default async function dayCarePage({ params }) {
                 </div>
               </div>
               {/* Action Card */}
-              <div className=" px-4 py-5 sm:p-6 col-span-1 overflow-hidden lg:rounded-lg bg-white lg:shadow-xl border-t lg:border z-50 border-gray-200 lg:sticky lg:top-4 fixed w-screen lg:w-full bottom-0 left-0 flex flex-col gap-6">
+              <div className=" px-4 py-5 sm:p-6 col-span-1 overflow-hidden lg:rounded-lg bg-white lg:shadow-xl border-t lg:border z-10 border-gray-200 lg:sticky lg:top-4 fixed w-screen lg:w-full bottom-0 left-0 flex flex-col gap-6">
                 <h3>
                   <span className=" text-2xl font-medium text-gray-900">
                     $800 CAD

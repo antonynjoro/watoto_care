@@ -45,7 +45,18 @@ export async function POST(request) {
 
         // if the daycare exists, throw an error
         if (daycare) {
-            throw new Error("Daycare with that slug already exists");
+            return new NextResponse("Daycare with that slug already exists", { status: 400 });
+        }
+
+        // if daycareEmail exists, throw an error (daycare owners can only list one daycare)
+        const daycareEmail = await prisma.daycares.findUnique({
+            where: {
+                ownerEmail: body.ownerEmail,
+            },
+        });
+
+        if (daycareEmail) {
+            return new NextResponse("Daycare listing already created with your logged in email.", { status: 400 });
         }
 
         // create the daycare

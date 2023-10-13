@@ -103,8 +103,8 @@ export default function CreateDaycareProfileForm({ session }) {
         }, 3000);
       })
       .catch((e) => {
-        toast.error("Daycare creation failed", e);
-        console.error(e);
+        toast.error(`Daycare creation failed, ${e.response.data}`);
+        console.error(e.response.data);
       });
   }
 

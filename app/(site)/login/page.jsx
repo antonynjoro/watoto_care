@@ -27,7 +27,7 @@ export default async function LoginPage() {
               <div>
                 <img
                   className="h-10 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                  src="https://tailwindui.com/img/logos/mark.svg?color=flame&shade=600"
                   alt="Your Company"
                 />
                 <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -35,7 +35,7 @@ export default async function LoginPage() {
                 </h2>
                 <p className="mt-2 text-sm leading-6 text-gray-500">
                   Not a member?{' '}
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                  <a href="#" className="font-semibold text-flame-600 hover:text-flame-500">
                     Start a 14 day free trial
                   </a>
                 </p>

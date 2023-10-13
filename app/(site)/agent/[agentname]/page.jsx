@@ -312,7 +312,7 @@ export default async function AgentProfile({ params }) {
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
               <button
                 type="button"
-                className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                className="flex w-full items-center justify-center rounded-md border border-transparent bg-flame-600 px-8 py-3 text-base font-medium text-white hover:bg-flame-700 focus:outline-none focus:ring-2 focus:ring-flame-500 focus:ring-offset-2 focus:ring-offset-gray-50"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -330,7 +330,7 @@ export default async function AgentProfile({ params }) {
               </button>
               <button
                 type="button"
-                className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-50 px-8 py-3 text-base font-medium text-indigo-700 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                className="flex w-full items-center justify-center rounded-md border border-transparent bg-flame-50 px-8 py-3 text-base font-medium text-flame-700 hover:bg-flame-100 focus:outline-none focus:ring-2 focus:ring-flame-500 focus:ring-offset-2 focus:ring-offset-gray-50"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -362,7 +362,7 @@ export default async function AgentProfile({ params }) {
                 {license.summary}{" "}
                 <a
                   href={license.href}
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
+                  className="font-medium text-flame-600 hover:text-flame-500"
                 >
                   Read full license
                 </a>

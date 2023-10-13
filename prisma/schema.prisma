@@ -63,7 +63,7 @@ model Daycares {
   id                String        @id @default(auto()) @map("_id") @db.ObjectId
   slug              String?       @unique
   ownerName         String?
-  ownerEmail        String?
+  ownerEmail        String        @unique
   name              String?
   email             String? 
   phone             String?      
