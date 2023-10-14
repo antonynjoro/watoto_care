@@ -98,7 +98,7 @@ PageHeadingWithAction.propTypes = {
   }),
 };
 
-export function PageHeading({
+export default function PageHeading({
   pages,
   title,
   primaryAction,

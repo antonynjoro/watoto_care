@@ -1,5 +1,5 @@
 "use client";
-import { PageHeading } from "../components/PageHeadings";
+import PageHeading  from "../components/PageHeadings";
 import { handleSave, handleCreateDaycareSpot } from "./logic";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";

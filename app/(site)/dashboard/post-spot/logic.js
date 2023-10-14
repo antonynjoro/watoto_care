@@ -31,14 +31,16 @@ export async function handleCreateDaycareSpot(
     }
 
     const data = await response.json();
+    console.log("status:", response.status);
     toast.success("Spot Created Successfully");
     console.log("Data:", data);
-
-    // Redirect to dashboard
-    redirect("/dashboard");
+    setTimeout(() => {
+      window.location.href = "/dashboard";
+    }, 2000)
 
   } catch (error) {
     console.log(error);
     toast.error(`Spot Creation Failed: ${error}`);
   }
+
 }

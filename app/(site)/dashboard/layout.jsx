@@ -2,6 +2,7 @@
 
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
+import { signOut } from 'next-auth/react'
 import {
   Bars3Icon,
   BellIcon,
@@ -15,6 +16,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import Link from 'next/link';
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -30,8 +32,7 @@ const teams = [
   { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
 ]
 const userNavigation = [
-  { name: 'Your profile', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Sign out', href: '#', onClickFunction: () => signOut({ callbackUrl: "/" }) },
 ]
 
 function classNames(...classes) {
@@ -100,7 +101,7 @@ export default function DashboarLayout({children}) {
                           <ul role="list" className="-mx-2 space-y-1">
                             {navigation.map((item) => (
                               <li key={item.name}>
-                                <a
+                                <Link
                                   href={item.href}
                                   className={classNames(
                                     item.current
@@ -117,7 +118,7 @@ export default function DashboarLayout({children}) {
                                     aria-hidden="true"
                                   />
                                   {item.name}
-                                </a>
+                                </Link>
                               </li>
                             ))}
                           </ul>
@@ -127,7 +128,7 @@ export default function DashboarLayout({children}) {
                           <ul role="list" className="-mx-2 mt-2 space-y-1">
                             {teams.map((team) => (
                               <li key={team.name}>
-                                <a
+                                <Link
                                   href={team.href}
                                   className={classNames(
                                     team.current
@@ -147,13 +148,13 @@ export default function DashboarLayout({children}) {
                                     {team.initial}
                                   </span>
                                   <span className="truncate">{team.name}</span>
-                                </a>
+                                </Link>
                               </li>
                             ))}
                           </ul>
                         </li>
                         <li className="mt-auto">
-                          <a
+                          <Link
                             href="#"
                             className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-charcoal-700 hover:bg-charcoal-50 hover:text-flame-600"
                           >
@@ -162,7 +163,7 @@ export default function DashboarLayout({children}) {
                               aria-hidden="true"
                             />
                             Settings
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </nav>
@@ -190,7 +191,7 @@ export default function DashboarLayout({children}) {
                   <ul role="list" className="-mx-2 space-y-1">
                     {navigation.map((item) => (
                       <li key={item.name}>
-                        <a
+                        <Link
                           href={item.href}
                           className={classNames(
                             item.current
@@ -207,14 +208,14 @@ export default function DashboarLayout({children}) {
                             aria-hidden="true"
                           />
                           {item.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
                 </li>
                 
                 <li className="mt-auto">
-                  <a
+                  <Link
                     href="#"
                     className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-charcoal-700 hover:bg-charcoal-50 hover:text-flame-800"
                   >
@@ -223,7 +224,7 @@ export default function DashboarLayout({children}) {
                       aria-hidden="true"
                     />
                     Settings
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </nav>
@@ -301,11 +302,13 @@ export default function DashboarLayout({children}) {
                                 active ? 'bg-charcoal-50' : '',
                                 'block px-3 py-1 text-sm leading-6 text-charcoal-900'
                               )}
+                              onClick={item.onClickFunction}
                             >
                               {item.name}
                             </a>
                           )}
                         </Menu.Item>
+
                       ))}
                     </Menu.Items>
                   </Transition>
