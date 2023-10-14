@@ -89,10 +89,6 @@ export default function CreateDaycareProfileForm({ session }) {
       maximumAgeYears: dayCareData.maximumAgeYears,
     };
 
-    
-
-    
-
 
 
     axios
