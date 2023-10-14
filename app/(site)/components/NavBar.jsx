@@ -33,7 +33,7 @@ export default function NavBar() {
     <Disclosure as="header" className="bg-white shadow sticky top-0 z-50">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:divide-y lg:divide-gray-200 lg:px-8">
+          <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:divide-y lg:divide-charcoal-200 lg:px-8">
             <div className="relative flex h-16 justify-between">
               <div className="relative z-10 flex px-2 lg:px-0">
                 <div className="flex flex-shrink-0 items-center">
@@ -58,8 +58,8 @@ export default function NavBar() {
                       href={item.href}
                       className={classNames(
                         item.current
-                          ? "bg-gray-100 text-gray-900"
-                          : "text-gray-900 hover:bg-gray-50 hover:text-gray-900",
+                          ? "bg-charcoal-100 text-charcoal-900"
+                          : "text-charcoal-900 hover:bg-charcoal-50 hover:text-charcoal-900",
                         "inline-flex items-center rounded-md py-2 px-3 text-sm font-medium"
                       )}
                       aria-current={item.current ? "page" : undefined}
@@ -75,14 +75,14 @@ export default function NavBar() {
                   <div className="relative">
                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                       <MagnifyingGlassIcon
-                        className="h-5 w-5 text-gray-400"
+                        className="h-5 w-5 text-charcoal-400"
                         aria-hidden="true"
                       />
                     </div>
                     <input
                       id="search"
                       name="search"
-                      className="block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-charcoal-900 ring-1 ring-inset ring-charcoal-300 placeholder:text-charcoal-400 focus:ring-2 focus:ring-inset focus:ring-charcoal-600 sm:text-sm sm:leading-6"
                       placeholder="Search"
                       type="search"
                     />
@@ -91,7 +91,7 @@ export default function NavBar() {
               </div>
               <div className="relative z-10 flex items-center lg:hidden">
                 {/* Mobile menu button */}
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
+                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-charcoal-400 hover:bg-charcoal-100 hover:text-charcoal-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-charcoal-500">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open menu</span>
                   {open ? (
@@ -104,7 +104,7 @@ export default function NavBar() {
               <div className="hidden lg:relative lg:z-10 lg:ml-4 lg:flex lg:items-center">
                 <button
                   type="button"
-                  className="relative flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                  className="relative flex-shrink-0 rounded-full bg-white p-1 text-charcoal-400 hover:text-charcoal-500 focus:outline-none focus:ring-2 focus:ring-charcoal-500 focus:ring-offset-2"
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
@@ -114,7 +114,7 @@ export default function NavBar() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-4 flex-shrink-0">
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+                    <Menu.Button className="relative flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-charcoal-500 focus:ring-offset-2">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
@@ -140,8 +140,8 @@ export default function NavBar() {
                             <a
                               href={item.href}
                               className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
+                                active ? "bg-charcoal-100" : "",
+                                "block px-4 py-2 text-sm text-charcoal-700"
                               )}
                             >
                               {item.name}
@@ -165,8 +165,8 @@ export default function NavBar() {
                   href={item.href}
                   className={classNames(
                     item.current
-                      ? "bg-gray-100 text-gray-900"
-                      : "text-gray-900 hover:bg-gray-50 hover:text-gray-900",
+                      ? "bg-charcoal-100 text-charcoal-900"
+                      : "text-charcoal-900 hover:bg-charcoal-50 hover:text-charcoal-900",
                     "block rounded-md py-2 px-3 text-base font-medium"
                   )}
                   aria-current={item.current ? "page" : undefined}
@@ -175,7 +175,7 @@ export default function NavBar() {
                 </Disclosure.Button>
               ))}
             </div>
-            <div className="border-t border-gray-200 pb-3 pt-4">
+            <div className="border-t border-charcoal-200 pb-3 pt-4">
               <div className="flex items-center px-4">
                 <div className="flex-shrink-0">
                   <img
@@ -185,16 +185,16 @@ export default function NavBar() {
                   />
                 </div>
                 <div className="ml-3">
-                  <div className="text-base font-medium text-gray-800">
+                  <div className="text-base font-medium text-charcoal-800">
                     {user.name}
                   </div>
-                  <div className="text-sm font-medium text-gray-500">
+                  <div className="text-sm font-medium text-charcoal-500">
                     {user.email}
                   </div>
                 </div>
                 <button
                   type="button"
-                  className="relative ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                  className="relative ml-auto flex-shrink-0 rounded-full bg-white p-1 text-charcoal-400 hover:text-charcoal-500 focus:outline-none focus:ring-2 focus:ring-charcoal-500 focus:ring-offset-2"
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
@@ -207,7 +207,7 @@ export default function NavBar() {
                     key={item.name}
                     as="a"
                     href={item.href}
-                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                    className="block rounded-md px-3 py-2 text-base font-medium text-charcoal-500 hover:bg-charcoal-50 hover:text-charcoal-900 focus:ring-charcoal-500 "
                   >
                     {item.name}
                   </Disclosure.Button>

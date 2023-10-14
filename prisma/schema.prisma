@@ -70,7 +70,7 @@ model Daycares {
   neighborhood      String?
   city              String?
   state             String?
-  country           String?
+  country           Country?
   zip               String?
   website           String?
   images            String[]
@@ -86,7 +86,30 @@ model Daycares {
   capacity          Int?
   minimumAgeMonths  Int?
   maximumAgeYears   Int?
+  daycareSpots      DaycareSpot[]
   date_created      DateTime      @default(now())
+}
+
+enum Country {
+  USA
+  CANADA
+}
+
+
+type DaycareSpot {
+  spotsAvailable    Int
+  minAgeMonths      Int
+  maxAgeYears       Int
+  pricePerMonth     Int
+  startingDate      DateTime
+  status            Status       @default(ACTIVE)
+  date_created      DateTime      @default(now())
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+  PENDING
 }
 
 
