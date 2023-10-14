@@ -8,9 +8,6 @@ import NavBar from "../../components/NavBar";
 import { notFound } from 'next/navigation'
 import { format } from "path";
 
-
-
-
 const daycare = {
   description: `
     <p>At our daycare, every child is given the chance to explore, learn, and grow in a nurturing environment. Our dedicated staff provides age-appropriate activities designed to stimulate creativity and foster a love for learning. Each child's safety and comfort are our top priorities, ensuring parents have peace of mind.</p>
