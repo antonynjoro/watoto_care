@@ -330,7 +330,7 @@ export default async function dayCarePage({ params }) {
                         Age Group:{" "}
                       </span>
                       <span className="text-charcoal-900 text-medium font-medium ">
-                        8 Months- 5 Years
+                        {data.daycareSpots[0].minAgeMonths} Months- 5 Years
                       </span>
                     </div>
                   </div>
