@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../../api/auth/[...nextauth]/route";
 import NavBar from "../../components/NavBar";
 import { notFound } from 'next/navigation'
+import { format } from "path";
 
 
 
@@ -79,6 +80,11 @@ export default async function dayCarePage({ params }) {
     notFound();
   }
 
+  function formatDate(date) {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(date).toLocaleDateString(undefined, options);
+  }
+
 
   console.log(`Data from the fetch: `);
   console.log(data);
@@ -86,7 +92,6 @@ export default async function dayCarePage({ params }) {
 
   return (
     <>
-      
       <div className="min-h-full">
         {/* Page header */}
         <NavBar />
@@ -239,7 +244,9 @@ export default async function dayCarePage({ params }) {
                       <h3 className="text-md text-charcoal-900">
                         {data.neighborhood}, {data.city}
                       </h3>
-                      <p className="text-sm text-charcoal-500 ">1.5 miles away</p>
+                      <p className="text-sm text-charcoal-500 ">
+                        1.5 miles away
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -303,7 +310,10 @@ export default async function dayCarePage({ params }) {
                         Available Openings:{" "}
                       </span>
                       <span className="text-charcoal-900 text-base font-medium ">
-                        3
+                        {
+                          data.daycareSpots[data.daycareSpots.length - 1]
+                            .spotsAvailable
+                        }
                       </span>
                     </div>
                   </div>
@@ -330,7 +340,16 @@ export default async function dayCarePage({ params }) {
                         Age:{" "}
                       </span>
                       <span className="text-charcoal-900 text-medium font-medium ">
-                        {data.daycareSpots[data.daycareSpots.length - 1].minAgeMonths} Months - {data.daycareSpots[data.daycareSpots.length - 1].maxAgeYears} Years
+                        {
+                          data.daycareSpots[data.daycareSpots.length - 1]
+                            .minAgeMonths
+                        }{" "}
+                        Months -{" "}
+                        {
+                          data.daycareSpots[data.daycareSpots.length - 1]
+                            .maxAgeYears
+                        }{" "}
+                        Years
                       </span>
                     </div>
                   </div>
@@ -355,7 +374,10 @@ export default async function dayCarePage({ params }) {
                         Starting Date:{" "}
                       </span>
                       <span className="text-charcoal-900 text-base font-medium ">
-                        September 2023
+                        {formatDate(
+                          data.daycareSpots[data.daycareSpots.length - 1]
+                            .startingDate
+                        )}
                       </span>
                     </div>
                   </div>
@@ -409,7 +431,7 @@ export default async function dayCarePage({ params }) {
                     Contact Daycare
                   </button>
                   <div className="text-zinc-600 text-xs font-normal font-['Open Sans']">
-                    Openings Listed: 15 September 2023
+                    Listed: {formatDate(data.daycareSpots[data.daycareSpots.length - 1].date_created)}
                   </div>
                 </div>
               </div>

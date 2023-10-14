@@ -99,7 +99,7 @@ export default function CreateDaycareProfileForm({ session }) {
       .then(() => {
         // wait 3 seconds before redirecting
         setTimeout(() => {
-          window.location.href = "/dashboard";
+          window.location.href = "/dashboard/create-spot";
         }, 3000);
       })
       .catch((e) => {
