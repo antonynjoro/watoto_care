@@ -280,7 +280,7 @@ export default async function dayCarePage({ params }) {
                   </span>
                 </h3>
                 <div className="flex-col justify-center items-start gap-2 inline-flex">
-                  <div className="justify-start items-center gap-2 inline-flex">
+                  <div className="justify-start gap-2 inline-flex">
                     <div className="w-6 h-6 relative">
                       <svg
                         width="24"
@@ -307,7 +307,7 @@ export default async function dayCarePage({ params }) {
                       </span>
                     </div>
                   </div>
-                  <div className="justify-start items-center gap-2 inline-flex">
+                  <div className="justify-start gap-2 inline-flex">
                     <div className="w-6 h-6 relative">
                       <svg
                         width="24"
@@ -327,14 +327,14 @@ export default async function dayCarePage({ params }) {
                     </div>
                     <div>
                       <span className="text-charcoal-700 text-base font-normal ">
-                        Age Group:{" "}
+                        Age:{" "}
                       </span>
                       <span className="text-charcoal-900 text-medium font-medium ">
-                        {data.daycareSpots[0].minAgeMonths} Months- 5 Years
+                        {data.daycareSpots[data.daycareSpots.length - 1].minAgeMonths} Months - {data.daycareSpots[data.daycareSpots.length - 1].maxAgeYears} Years
                       </span>
                     </div>
                   </div>
-                  <div className="justify-start items-center gap-2 inline-flex">
+                  <div className="justify-start gap-2 inline-flex">
                     <svg
                       width="24"
                       height="24"
