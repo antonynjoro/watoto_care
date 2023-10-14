@@ -22,13 +22,13 @@ model User {
   imageAlt                      String?
   bio                           String?
   highlights                    String[]
-  testimonials                  Testimonials[]
+  testimonials                  AgentTestimonials[]
   account                       Account[]
   date_created                  DateTime      @default(now())
 }
 
 
-type Testimonials {  
+type AgentTestimonials {  
   customer_name                 String
   image                         String?
   testimonial_text              String
@@ -77,7 +77,7 @@ model Daycares {
   description       String?
   licensingStatus   Boolean?
   highlights        String[]
-  testimonials      DaycareTestimonials[]
+  testimonials      Testimonial[]
   ownerPhoto        String?
   openingTime       String?
   closingTime       String?
@@ -102,7 +102,7 @@ type DaycareSpot {
   maxAgeYears       Int
   pricePerMonth     Int
   startingDate      DateTime
-  status            Status       @default(ACTIVE)
+  status            Status        @default(ACTIVE)
   date_created      DateTime      @default(now())
 }
 
@@ -113,9 +113,13 @@ enum Status {
 }
 
 
-
-type DaycareTestimonials {
-  name              String
-  testimonial       String
+type Testimonial {
+  customerName                  String
+  image                         String?
+  text                          String?
+  rating                        Int
+  childAgeMonths                Int?
+  childAgeYears                 Int?
+  date_created              DateTime      @default(now())
 }
 
