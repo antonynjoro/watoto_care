@@ -441,7 +441,6 @@ export default async function dayCarePage({ params }) {
           
         </main>
       </div>
-      
     </>
   );
 }
