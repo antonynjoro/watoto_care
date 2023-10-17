@@ -56,6 +56,7 @@ export default async function dayCarePage({ params }) {
   const apiUrl = process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
   const response = await fetch(`${apiUrl}/api/daycares/${daycareslug}`);
   
+  
   console.log(`Response from the fetch: `);
   
 
