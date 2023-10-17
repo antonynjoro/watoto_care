@@ -19,7 +19,7 @@ export default function CreateDaycareProfileForm({ session }) {
     city: "",
     neighborhood: "",
     state: "",
-    country: "Canada",
+    country: "CANADA",
     zip: "",
     website: "",
     licensingStatus: false,
@@ -761,8 +761,8 @@ export default function CreateDaycareProfileForm({ session }) {
                     }))
                   }
                 >
-                  <option>United States</option>
-                  <option>Canada</option>
+                  <option value="USA">United States</option>
+                  <option value="CANADA">Canada</option>
                 </select>
               </div>
             </div>
