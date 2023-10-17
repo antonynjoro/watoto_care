@@ -1,5 +1,5 @@
 # Start from a base image with Node.js
-FROM node:18.13
+FROM node:18.18.2
 
 # Update the system and install required dependencies
 RUN apt-get update && \
