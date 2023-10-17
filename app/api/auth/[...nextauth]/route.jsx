@@ -85,7 +85,6 @@ export const authOptions = {
   pages: {
     signIn: "/login",
     signOut: "/",
-    newUser: "/create-profile",
   },
 
 };

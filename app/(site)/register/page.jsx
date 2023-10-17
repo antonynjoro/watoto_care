@@ -1,84 +1,122 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "../../api/auth/[...nextauth]/route";
-import RegisterForm from "./RegisterForm";
-import GoogleLoginButton from "../components/GoogleLoginButton";
-import { redirect } from 'next/navigation'
+"use client";
 
+import { useState } from "react";
+import { RadioGroup } from "@headlessui/react";
+import { CheckCircleIcon } from "@heroicons/react/20/solid";
+import { signIn } from "next-auth/react"
 
+const registerOptions = [
+  {
+    id: 1,
+    title: "Join as a Parent",
+    description: "Find, compare and contact daycares near you",
+  },
+  {
+    id: 2,
+    title: "Join as a Daycare Owner",
+    description: "Create an online presence for your daycare and get discovered by thousands of parents.",
+  },
+];
 
-export default async function Register() {
-  const session = await getServerSession(authOptions);
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 
-  console.log(`Session before redirect: ${session}`)
- 
-
-  //redirrect to dashboard if user is logged in
-  if (session) {
-
-    console.log("redirecting")
-    redirect("/dashboard");
-  }
+export default function Page() {
+  const [selectedRegisterOption, setSelectedRegisterOption] = useState(
+    registerOptions[0]
+  );
 
   return (
-    <>
-      <div className="flex min-h-full flex-1">
-        <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-          <div className="mx-auto w-full max-w-sm lg:w-96">
-            <div>
-              <img
-                className="h-10 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt="Your Company"
-              />
-              <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                Create an Account
-              </h2>
-              <p className="mt-2 text-sm leading-6 text-gray-500">
-                Don't have an account?{" "}
-                <a
-                  href="#"
-                  className="font-semibold text-indigo-600 hover:text-indigo-500"
-                >
-                  Get started for free.
-                </a>
-              </p>
-            </div>
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-screen flex items-center bg-slate-50">
+      {/* We've used 3xl here, but feel free to try other max-widths based on your needs */}
+      <div className="mx-auto max-w-3xl bg-white p-10 border border-gray-200 rounded-md flex flex-col items-stretch">
+        <RadioGroup
+          value={selectedRegisterOption}
+          onChange={setSelectedRegisterOption}
+          className="flex flex-col"
+        >
+          <RadioGroup.Label className="text-base font-semibold text-center w-full leading-6 text-gray-900 pb-5">
+            <h1 className="text-xl bold">Join as a Parent or Daycare Owner</h1>
+            <p>Select a mailing list</p>
+          </RadioGroup.Label>
 
-            <div className="mt-10">
-              <div>
-                <RegisterForm />
-              </div>
-
-              <div className="mt-10">
-                <div className="relative">
-                  <div
-                    className="absolute inset-0 flex items-center"
-                    aria-hidden="true"
-                  >
-                    <div className="w-full border-t border-gray-200" />
-                  </div>
-                  <div className="relative flex justify-center text-sm font-medium leading-6">
-                    <span className="bg-white px-6 text-gray-900">
-                      Or continue with
+          <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+            {registerOptions.map((registerOption) => (
+              <RadioGroup.Option
+                key={registerOption.id}
+                value={registerOption}
+                className={({ active }) =>
+                  classNames(
+                    active
+                      ? "border-gray-600 ring-2 ring-gray-600"
+                      : "border-gray-300",
+                    "relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none"
+                  )
+                }
+              >
+                {({ checked, active }) => (
+                  <>
+                    <span className="flex flex-1">
+                      <span className="flex flex-col">
+                        <RadioGroup.Label
+                          as="span"
+                          className="block text-sm font-medium text-gray-900"
+                        >
+                          {registerOption.title}
+                        </RadioGroup.Label>
+                        <RadioGroup.Description
+                          as="span"
+                          className="mt-1 flex items-center text-sm text-gray-500"
+                        >
+                          {registerOption.description}
+                        </RadioGroup.Description>
+                        <RadioGroup.Description
+                          as="span"
+                          className="mt-6 text-sm font-medium text-gray-900"
+                        >
+                          {}
+                        </RadioGroup.Description>
+                      </span>
                     </span>
-                  </div>
-                </div>
-
-                <div className="mt-6 grid grid-cols-2 gap-4">
-                  <GoogleLoginButton callbackUrl={"/create-profile"}/>
-                </div>
-              </div>
-            </div>
+                    <CheckCircleIcon
+                      className={classNames(
+                        !checked ? "invisible" : "",
+                        "h-5 w-5 text-gray-600"
+                      )}
+                      aria-hidden="true"
+                    />
+                    <span
+                      className={classNames(
+                        active ? "border" : "border-2",
+                        checked ? "border-gray-600" : "border-transparent",
+                        "pointer-events-none absolute -inset-px rounded-lg"
+                      )}
+                      aria-hidden="true"
+                    />
+                  </>
+                )}
+              </RadioGroup.Option>
+            ))}
           </div>
-        </div>
-        <div className="relative hidden w-0 flex-1 lg:block">
-          <img
-            className="absolute inset-0 h-full w-full object-cover"
-            src="https://images.unsplash.com/photo-1496917756835-20cb06e75b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"
-            alt=""
-          />
-        </div>
+        </RadioGroup>
+        <a
+          className="py-3 px-8 text-white bg-gray-900 hover:bg-gray-700 rounded-md mt-8 text-center"
+          href={
+            selectedRegisterOption === registerOptions[0]
+              ? "/register/parent"
+              : "/register/daycare"
+          }
+        >
+          Create Account
+        </a>
+        <p className="text-gray-600 text-center w-full pt-4">
+          Already have an account 
+          <a href="/login" className="pl-1 text-gray-900 hover:text-gray-700 hover:font-bold">
+            Sign In
+          </a>
+        </p>
       </div>
-    </>
+    </div>
   );
 }

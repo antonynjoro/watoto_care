@@ -1,11 +1,11 @@
 
 
 import { getServerSession } from "next-auth";
-import { authOptions } from "../../api/auth/[...nextauth]/route"
+import { authOptions } from "../../api/auth/[...nextauth]/route";
 
 import axios from "axios";
 import toast from "react-hot-toast";
-import CreateProfileForm from "./CreateProfileForm";
+import CreateDaycareProfileForm from "./CreateDaycareProfileForm";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -19,13 +19,13 @@ export default async function Home() {
               <div className="md:flex md:items-center md:justify-between">
                 <div className="min-w-0 flex-1">
                   <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-                    Create your Profile
+                    Create your Daycare's Profile
                   </h2>
                 </div>
               </div>
             </div>
             <div className="bg-gray-50 px-4 py-5 sm:p-6">
-              <CreateProfileForm 
+              <CreateDaycareProfileForm 
                 session={session}
               />
             </div>

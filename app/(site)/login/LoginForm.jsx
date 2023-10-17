@@ -38,7 +38,7 @@ export default function LoginForm() {
             type="email"
             autoComplete="email"
             required
-            className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-flame-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
@@ -58,7 +58,7 @@ export default function LoginForm() {
             type="password"
             autoComplete="current-password"
             required
-            className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-flame-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
@@ -69,7 +69,7 @@ export default function LoginForm() {
             id="remember-me"
             name="remember-me"
             type="checkbox"
-            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+            className="h-4 w-4 rounded border-gray-300 text-flame-600 focus:ring-flame-600"
           />
           <label
             htmlFor="remember-me"
@@ -82,7 +82,7 @@ export default function LoginForm() {
         <div className="text-sm leading-6">
           <a
             href="#"
-            className="font-semibold text-indigo-600 hover:text-indigo-500"
+            className="font-semibold text-flame-600 hover:text-flame-500"
           >
             Forgot password?
           </a>
@@ -92,7 +92,7 @@ export default function LoginForm() {
       <div>
         <button
           type="submit"
-          className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          className="flex w-full justify-center rounded-md bg-flame-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-flame-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flame-600"
         >
           Sign in
         </button>
