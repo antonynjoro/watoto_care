@@ -97,7 +97,7 @@ export default function CreateDaycareProfileForm({ session }) {
       .then(() => {
         // wait 3 seconds before redirecting
         setTimeout(() => {
-          window.location.href = "/dashboard/create-spot";
+          window.location.href = "/dashboard/post-spot";
         }, 3000);
       })
       .catch((e) => {
