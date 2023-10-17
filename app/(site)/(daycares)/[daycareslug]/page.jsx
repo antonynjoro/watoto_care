@@ -55,7 +55,7 @@ export default async function dayCarePage({ params }) {
 
   const apiUrl = process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
   const response = await fetch(`${apiUrl}/api/daycares/${daycareslug}`);
-  
+
   
   console.log(`Response from the fetch: `);
   
@@ -180,7 +180,7 @@ export default async function dayCarePage({ params }) {
                     <div>
                       <img
                         className="inline-block h-9 w-9 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src={data.ownerPhoto}
                         alt=""
                       />
                     </div>

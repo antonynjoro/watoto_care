@@ -5,13 +5,9 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
-const user = {
-  name: "Tom Cook",
-  email: "tom@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-};
+
 const navigation = [
   { name: "Find a Daycare", href: "#", current: true },
   { name: "Team", href: "#", current: false },
@@ -29,6 +25,7 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+  const  {data: session, status} = useSession()
   return (
     <Disclosure as="header" className="bg-white shadow sticky top-0 z-50">
       {({ open }) => (
@@ -119,8 +116,8 @@ export default function NavBar() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src={user.imageUrl}
-                        alt=""
+                        src={session.user.image}
+                        alt={session.user.name}
                       />
                     </Menu.Button>
                   </div>
@@ -180,16 +177,16 @@ export default function NavBar() {
                 <div className="flex-shrink-0">
                   <img
                     className="h-10 w-10 rounded-full"
-                    src={user.imageUrl}
+                    src={session.user.image}
                     alt=""
                   />
                 </div>
                 <div className="ml-3">
                   <div className="text-base font-medium text-charcoal-800">
-                    {user.name}
+                    {session.user.name}
                   </div>
                   <div className="text-sm font-medium text-charcoal-500">
-                    {user.email}
+                    {session.user.email}
                   </div>
                 </div>
                 <button
