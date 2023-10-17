@@ -1,13 +1,13 @@
 "use client";
 
-import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { ImageUploadZone, ImageUploadButton } from "../components/UploadThingWidgets";
 import DaycareImage from "./DaycareImage";
-import TitleDescriptionToggle from "../components/TitleDescriptionToggle";
+
 
 export default function CreateDaycareProfileForm({ session }) {
   const [dayCareData, setDayCareData] = useState({
@@ -116,6 +116,8 @@ export default function CreateDaycareProfileForm({ session }) {
       }));
     }
   }, [session]);
+
+  const router = useRouter();
 
 
 
@@ -902,6 +904,7 @@ export default function CreateDaycareProfileForm({ session }) {
         <button
           type="button"
           className="text-sm font-semibold leading-6 text-gray-900"
+          onClick={router.push("/dashboard")}
         >
           Cancel
         </button>

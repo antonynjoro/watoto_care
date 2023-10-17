@@ -1,6 +1,16 @@
-import React from "react";
+
+import { StarIcon } from "@heroicons/react/20/solid";
+import { format } from "path";
+
+
 
 export default function Reviews({reviews}) {
+  
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(" ");
+  }
+
+
   return (
     <>
       {/* Reviews */}

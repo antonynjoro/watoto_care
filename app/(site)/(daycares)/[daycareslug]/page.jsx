@@ -1,12 +1,11 @@
 
 
 
-import { StarIcon } from "@heroicons/react/20/solid";
+
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../../api/auth/[...nextauth]/route";
 import NavBar from "../../components/NavBar";
 import { notFound } from 'next/navigation'
-import { format } from "path";
 import Reviews from "./Reviews";
 
 const daycare = {
@@ -49,9 +48,7 @@ const reviews = {
   ],
 };
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+
 
 export default async function dayCarePage({ params }) {
   const session = await getServerSession(authOptions);
@@ -151,7 +148,12 @@ export default async function dayCarePage({ params }) {
                   {data.neighborhood} ({data.city})
                 </h1>
 
-                <div className="group flex items-center mt-2 text-charcoal-500">
+                <p className="text-base text-timberwolf-500">
+                  {data.phone} • {data.email}
+                </p>
+
+                {/* Unhide Reviews Once you implement them */}
+                {/* <div className="group flex items-center mt-2 text-charcoal-500">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -168,7 +170,9 @@ export default async function dayCarePage({ params }) {
                   <p className="ml-2 text-base">
                     4.5 Stars • <a className="underline">37 Reviews</a>
                   </p>
-                </div>
+                </div> */}
+
+
                 {/* Daycare Provider Avatar */}
                 <a href="#" className="group block flex-shrink-0 my-6">
                   <div className="flex items-center">
@@ -184,7 +188,7 @@ export default async function dayCarePage({ params }) {
                         {data.ownerName}
                       </p>
                       <p className="text-sm font-medium text-charcoal-500 group-hover:text-charcoal-700">
-                        Last seen 2 hours ago
+                        Daycare Operator
                       </p>
                     </div>
                   </div>
@@ -437,7 +441,7 @@ export default async function dayCarePage({ params }) {
           </div>
           
           {/* Reviews */}
-          <Reviews reviews={reviews} />
+          {/* <Reviews reviews={reviews} /> */}
           
         </main>
       </div>
