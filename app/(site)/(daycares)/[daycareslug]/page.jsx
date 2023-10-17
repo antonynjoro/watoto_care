@@ -4,6 +4,7 @@ import { authOptions } from "../../../api/auth/[...nextauth]/route";
 import NavBar from "../../components/NavBar";
 import { notFound } from 'next/navigation'
 import Reviews from "./Reviews";
+import { format } from "path";
 
 const daycare = {
   description: `
@@ -52,7 +53,7 @@ export default async function dayCarePage({ params }) {
 
   const { daycareslug } = params;
 
-  const response = await fetch("http://localhost:3000/api/daycares/" + daycareslug);
+  const response = await fetch("/api/daycares/" + daycareslug);
   console.log(`Response from the fetch: `);
   
 
