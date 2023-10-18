@@ -458,19 +458,21 @@ export default async function dayCarePage({ params }) {
               {/* Action Card Mobile */}
               <div
                 className="
-                lg:hidden flex justify-between flex-row gap-6 
+                lg:hidden flex flex-row justify-between gap-2 
                 px-4 py-5 
                 col-span-2 sticky w-full  bottom-0 left-0  lg:top-20 
                 border-t lg:border border-charcoal-200 
                 bg-white 
                 overflow-hidden 
                 z-10
-                flex-wrap
               "
               >
                 <h3>
                   <span className=" flex-auto text-2xl font-medium text-charcoal-900">
-                    $800 CAD
+                    $800
+                  </span>
+                  <span className="text-l font-medium text-charcoal-500 md:text-2xl md:text-inherit">
+                    CAD
                   </span>
                   <span className="text-l font-medium text-charcoal-500">
                     /month
