@@ -458,7 +458,7 @@ export default async function dayCarePage({ params }) {
               {/* Action Card Mobile */}
               <div
                 className="
-                lg:hidden flex flex-row justify-between gap-2 
+                lg:hidden flex flex-row justify-between gap-2 items-center
                 px-4 py-5 
                 col-span-2 sticky w-full  bottom-0 left-0  lg:top-20 
                 border-t lg:border border-charcoal-200 
