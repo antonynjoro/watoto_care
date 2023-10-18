@@ -25,7 +25,12 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
-  const  {data: session, status} = useSession()
+  const  {data: session, status} =  useSession()
+  console.log("NavBar Session start")
+  console.log(status)
+  console.log(session)
+  console.log("NavBar Session end")
+  
   return (
     <Disclosure as="header" className="bg-white shadow sticky top-0 z-50">
       {({ open }) => (
@@ -109,6 +114,7 @@ export default function NavBar() {
                 </button>
 
                 {/* Profile dropdown */}
+                {session && (
                 <Menu as="div" className="relative ml-4 flex-shrink-0">
                   <div>
                     <Menu.Button className="relative flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-charcoal-500 focus:ring-offset-2">
@@ -149,6 +155,7 @@ export default function NavBar() {
                     </Menu.Items>
                   </Transition>
                 </Menu>
+                )}
               </div>
             </div>
           </div>
@@ -172,6 +179,7 @@ export default function NavBar() {
                 </Disclosure.Button>
               ))}
             </div>
+            {session && (
             <div className="border-t border-charcoal-200 pb-3 pt-4">
               <div className="flex items-center px-4">
                 <div className="flex-shrink-0">
@@ -211,6 +219,7 @@ export default function NavBar() {
                 ))}
               </div>
             </div>
+            )}
           </Disclosure.Panel>
         </>
       )}

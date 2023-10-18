@@ -37,7 +37,7 @@ export default function DashboardPage(){
           </Link>
 
           <p>
-            {JSON.stringify(session)}
+            {(status === "loading") ? "Loading..." : JSON.stringify(session)}
          </p>
         </div>
       </>
