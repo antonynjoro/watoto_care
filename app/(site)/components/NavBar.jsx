@@ -39,8 +39,17 @@ export default function NavBar() {
             <div className="relative flex h-16 justify-between">
               <div className="relative z-10 flex px-2 lg:px-0">
                 <div className="flex flex-shrink-0 items-center">
+                  {/* Mobile Logo */}
                   <Image
-                    className="h-8 w-auto"
+                    className="h-8 w-auto lg:hidden "
+                    src="/logo.svg"
+                    alt="Watoto.Care"
+                    width={32}
+                    height={32}
+                  />
+                  {/* Desktop Logo */}
+                  <Image
+                    className="h-8 w-auto hidden "
                     src="/landscape-logo.svg"
                     alt="Watoto.Care"
                     width={32}
