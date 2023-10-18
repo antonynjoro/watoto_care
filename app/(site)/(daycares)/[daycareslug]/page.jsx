@@ -459,7 +459,7 @@ export default async function dayCarePage({ params }) {
               <div
                 className="
                 lg:hidden flex flex-row justify-between gap-2 items-center
-                px-4 py-5 
+                px-2 py-5 
                 col-span-2 sticky w-full  bottom-0 left-0  lg:top-20 
                 border-t lg:border border-charcoal-200 
                 bg-white 
@@ -480,7 +480,7 @@ export default async function dayCarePage({ params }) {
                 </h3>
 
                 <div className="  flex-col justify-center items-stretch gap-2 inline-flex">
-                  <button
+                  <a
                     type="button"
                     className="rounded-md bg-white border text-charcoal-700 px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-charcoal-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal-600 flex justify-center items-center gap-1.5"
                     href={`tel:${data.phone}`}
@@ -498,10 +498,10 @@ export default async function dayCarePage({ params }) {
                       />
                     </svg>
                     Call Daycare
-                  </button>
+                  </a>
                 </div>
               </div>
-              <div className="lg:hidden flex flex-col gap-4">
+              <div className="lg:hidden flex flex-col gap-4 px-2 pt-3">
                 <div className="flex-col justify-center items-start gap-2 inline-flex">
                   <div className="justify-start gap-2 inline-flex">
                     <div className="w-6 h-6 relative">
@@ -598,62 +598,64 @@ export default async function dayCarePage({ params }) {
                     </div>
                   </div>
                 </div>
-                <div className="flex-col justify-center items-stretch gap-2 inline-flex">
-                  <div className="isolate -space-y-px rounded-md shadow-sm">
-                    <div className="relative rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-charcoal-300 focus-within:z-10 focus-within:ring-2 focus-within:ring-charcoal-600">
-                      <label
-                        htmlFor="child-age"
-                        className="block text-xs font-medium text-charcoal-900"
-                      >
-                        Age of your child in years
-                      </label>
-                      <input
-                        type="number"
-                        name="age of child"
-                        min={0}
-                        max={13}
-                        id="child-age"
-                        className="block w-full border-0 p-0 text-charcoal-900 placeholder:text-charcoal-400 focus:ring-0 sm:text-sm sm:leading-6"
-                        placeholder="2"
-                      />
+                <form className="flex flex-col gap-4">
+                  <div className="flex-col justify-center items-stretch gap-2 inline-flex">
+                    <div className="isolate -space-y-px rounded-md shadow-sm">
+                      <div className="relative rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-charcoal-300 focus-within:z-10 focus-within:ring-2 focus-within:ring-charcoal-600">
+                        <label
+                          htmlFor="child-age"
+                          className="block text-xs font-medium text-charcoal-900"
+                        >
+                          Age of your child in years
+                        </label>
+                        <input
+                          type="number"
+                          name="age of child"
+                          min={0}
+                          max={13}
+                          id="child-age"
+                          className="block w-full border-0 p-0 text-charcoal-900 placeholder:text-charcoal-400 focus:ring-0 sm:text-sm sm:leading-6"
+                          placeholder="2"
+                        />
+                      </div>
+                      <div className="relative rounded-md rounded-t-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-charcoal-300 focus-within:z-10 focus-within:ring-2 focus-within:ring-charcoal-600">
+                        <label
+                          htmlFor="cellphone-number"
+                          className="block text-xs font-medium text-charcoal-900"
+                        >
+                          Cellphone Number
+                        </label>
+                        <input
+                          type="tel"
+                          name="cellphone number"
+                          id="cellphone-number"
+                          className="block w-full border-0 p-0 text-charcoal-900 placeholder:text-charcoal-400 focus:ring-0 sm:text-sm sm:leading-6"
+                          placeholder="306-123-4567"
+                        />
+                      </div>
                     </div>
-                    <div className="relative rounded-md rounded-t-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-charcoal-300 focus-within:z-10 focus-within:ring-2 focus-within:ring-charcoal-600">
-                      <label
-                        htmlFor="cellphone-number"
-                        className="block text-xs font-medium text-charcoal-900"
-                      >
-                        Cellphone Number
-                      </label>
-                      <input
-                        type="tel"
-                        name="cellphone number"
-                        id="cellphone-number"
-                        className="block w-full border-0 p-0 text-charcoal-900 placeholder:text-charcoal-400 focus:ring-0 sm:text-sm sm:leading-6"
-                        placeholder="306-123-4567"
-                      />
-                    </div>
+                    <p className="text-xs text-charcoal-500">
+                      We'll text the daycare on your behalf to let them know you
+                      are interested in a spot.
+                    </p>
                   </div>
-                  <p className="text-xs text-charcoal-500">
-                    We'll text the daycare on your behalf to let them know you
-                    are interested in a spot.
-                  </p>
-                </div>
 
-                <div className="flex-col justify-center items-stretch gap-2 inline-flex">
-                  <button
-                    type="button"
-                    className="rounded-md bg-gray-900 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal-600"
-                  >
-                    Contact Daycare
-                  </button>
-                  <div className="text-zinc-600 text-xs font-normal font-['Open Sans']">
-                    Listed:{" "}
-                    {formatDate(
-                      data.daycareSpots[data.daycareSpots.length - 1]
-                        .date_created
-                    )}
+                  <div className="flex-col justify-center items-stretch gap-2 inline-flex">
+                    <button
+                      type="button"
+                      className="rounded-md bg-gray-900 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal-600"
+                    >
+                      Contact Daycare
+                    </button>
+                    <div className="text-zinc-600 text-xs font-normal font-['Open Sans']">
+                      Listed:{" "}
+                      {formatDate(
+                        data.daycareSpots[data.daycareSpots.length - 1]
+                          .date_created
+                      )}
+                    </div>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
