@@ -49,7 +49,7 @@ export default function NavBar() {
                 </div>
               </div>
 
-              <div className="relative z-0 flex flex-1 items-center justify-center lg:justify-between px-2 sm:inset-0">
+              <div className={`relative z-0 flex flex-1 items-center justify-center lg:justify-between ${session? "px-2" : "pl-2"} sm:inset-0`}>
                 <nav
                   className="hidden lg:flex lg:space-x-8 lg:py-2 px-4"
                   aria-label="Global"

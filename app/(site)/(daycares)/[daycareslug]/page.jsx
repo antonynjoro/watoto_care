@@ -149,7 +149,7 @@ export default async function dayCarePage({ params }) {
                   {data.neighborhood} ({data.city})
                 </h1>
 
-                <p className="text-base text-timberwolf-500">
+                <p className="text-base text-charcoal-500">
                   {data.phone} • {data.email}
                 </p>
 
@@ -271,9 +271,9 @@ export default async function dayCarePage({ params }) {
                   </h2>
 
                   <div className="prose prose-sm mt-4 text-charcoal-500">
-                    <ul role="list">
+                    <ul role="list" className=" pl-4">
                       {data.highlights.map((item) => (
-                        <li key={item}>{item}</li>
+                        <li key={item} className=" list-disc pb-2">{item}</li>
                       ))}
                     </ul>
                   </div>
