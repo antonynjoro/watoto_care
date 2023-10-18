@@ -173,7 +173,6 @@ export default async function dayCarePage({ params }) {
                   </p>
                 </div> */}
 
-
                 {/* Daycare Provider Avatar */}
                 <a href="#" className="group block flex-shrink-0 my-6">
                   <div className="flex items-center">
@@ -273,14 +272,27 @@ export default async function dayCarePage({ params }) {
                   <div className="prose prose-sm mt-4 text-charcoal-500">
                     <ul role="list" className=" pl-4">
                       {data.highlights.map((item) => (
-                        <li key={item} className=" list-disc pb-2">{item}</li>
+                        <li key={item} className=" list-disc pb-2">
+                          {item}
+                        </li>
                       ))}
                     </ul>
                   </div>
                 </div>
               </div>
-              {/* Action Card */}
-              <div className=" px-4 py-5 sm:p-6 col-span-1 overflow-hidden lg:rounded-lg bg-white lg:shadow-xl border-t lg:border z-10 border-charcoal-200 lg:sticky lg:top-20 fixed w-screen lg:w-full bottom-0 left-0 flex flex-col gap-6">
+              {/* Action Card Desktop */}
+              <div
+                className="
+                hidden lg:flex flex-col gap-6 
+                px-4 py-5 sm:p-6 
+                col-span-1 fixed w-screen lg:w-full bottom-0 left-0 lg:sticky lg:top-20 
+                border-t lg:border border-charcoal-200 
+                bg-white 
+                overflow-hidden 
+                lg:rounded-lg 
+                lg:shadow-xl z-10
+              "
+              >
                 <h3>
                   <span className=" text-2xl font-medium text-charcoal-900">
                     $800 CAD
@@ -434,16 +446,218 @@ export default async function dayCarePage({ params }) {
                     Contact Daycare
                   </button>
                   <div className="text-zinc-600 text-xs font-normal font-['Open Sans']">
-                    Listed: {formatDate(data.daycareSpots[data.daycareSpots.length - 1].date_created)}
+                    Listed:{" "}
+                    {formatDate(
+                      data.daycareSpots[data.daycareSpots.length - 1]
+                        .date_created
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Card Mobile */}
+              <div
+                className="
+                lg:hidden flex justify-between flex-row gap-6 
+                px-4 py-5 
+                col-span-2 sticky w-full  bottom-0 left-0  lg:top-20 
+                border-t lg:border border-charcoal-200 
+                bg-white 
+                overflow-hidden 
+                z-10
+                flex-wrap
+              "
+              >
+                <h3>
+                  <span className=" flex-auto text-2xl font-medium text-charcoal-900">
+                    $800 CAD
+                  </span>
+                  <span className="text-l font-medium text-charcoal-500">
+                    /month
+                  </span>
+                </h3>
+
+                <div className="  flex-col justify-center items-stretch gap-2 inline-flex">
+                  <button
+                    type="button"
+                    className="rounded-md bg-white border text-charcoal-700 px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-charcoal-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal-600 flex justify-center items-center gap-1.5"
+                    href={`tel:${data.phone}`}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-5 h-5"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M2 3.5A1.5 1.5 0 013.5 2h1.148a1.5 1.5 0 011.465 1.175l.716 3.223a1.5 1.5 0 01-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 006.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 011.767-1.052l3.223.716A1.5 1.5 0 0118 15.352V16.5a1.5 1.5 0 01-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 012.43 8.326 13.019 13.019 0 012 5V3.5z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Call Daycare
+                  </button>
+                </div>
+              </div>
+              <div className="lg:hidden flex flex-col gap-4">
+                <div className="flex-col justify-center items-start gap-2 inline-flex">
+                  <div className="justify-start gap-2 inline-flex">
+                    <div className="w-6 h-6 relative">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g id="teddy-bear">
+                          <path
+                            id="Vector"
+                            d="M15.75 19.13C14.92 19.13 14.25 18.29 14.25 17.25C14.25 16.22 14.92 15.38 15.75 15.38C16.58 15.38 17.25 16.22 17.25 17.25C17.25 18.29 16.58 19.13 15.75 19.13ZM12 11.25C10.76 11.25 9.75 10.41 9.75 9.38C9.75 8.34 10.76 7.5 12 7.5C13.24 7.5 14.25 8.34 14.25 9.38C14.25 10.41 13.24 11.25 12 11.25ZM8.25 19.13C7.42 19.13 6.75 18.29 6.75 17.25C6.75 16.22 7.42 15.38 8.25 15.38C9.08 15.38 9.75 16.22 9.75 17.25C9.75 18.29 9.08 19.13 8.25 19.13ZM12 8.25C12.41 8.25 12.75 8.59 12.75 9C12.75 9.41 12.41 9.75 12 9.75C11.59 9.75 11.25 9.41 11.25 9C11.25 8.59 11.59 8.25 12 8.25ZM18.75 12C18.43 12 18.12 12.07 17.84 12.2C17.36 11.59 16.71 11.07 15.93 10.67C16.5 9.87 16.84 8.9 16.84 7.85C16.84 7.83 16.84 7.81 16.84 7.79C17.93 7.56 18.75 6.59 18.75 5.42C18.75 4.09 17.66 3 16.33 3C15.64 3 15 3.29 14.58 3.75C13.83 3.28 12.95 3 12 3C11.05 3 10.16 3.28 9.42 3.75C9 3.29 8.36 3 7.67 3C6.34 3 5.25 4.09 5.25 5.42C5.25 6.58 6.07 7.55 7.15 7.79C7.15 7.81 7.15 7.83 7.15 7.85C7.15 8.9 7.5 9.88 8.06 10.67C7.29 11.07 6.64 11.59 6.16 12.2C5.88 12.07 5.57 12 5.25 12C4 12 3 13 3 14.25C3 15.5 4 16.5 5.25 16.5C5.27 16.5 5.29 16.5 5.31 16.5C5.27 16.74 5.25 17 5.25 17.25C5.25 19.32 6.59 21 8.25 21C9.26 21 10.15 20.37 10.7 19.41C11.12 19.47 11.55 19.5 12 19.5C12.45 19.5 12.88 19.47 13.3 19.41C13.85 20.37 14.74 21 15.75 21C17.41 21 18.75 19.32 18.75 17.25C18.75 17 18.73 16.74 18.69 16.5C18.71 16.5 18.73 16.5 18.75 16.5C20 16.5 21 15.5 21 14.25C21 13 20 12 18.75 12Z"
+                            className=" fill-timberwolf-600"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                    <div>
+                      <span className="text-charcoal-700 text-base font-normal">
+                        Available Openings:{" "}
+                      </span>
+                      <span className="text-charcoal-900 text-base font-medium ">
+                        {
+                          data.daycareSpots[data.daycareSpots.length - 1]
+                            .spotsAvailable
+                        }
+                      </span>
+                    </div>
+                  </div>
+                  <div className="justify-start gap-2 inline-flex">
+                    <div className="w-6 h-6 relative">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g id="human-male-girl">
+                          <path
+                            id="Vector"
+                            d="M7.5 2C8.03043 2 8.53914 2.21071 8.91421 2.58579C9.28929 2.96086 9.5 3.46957 9.5 4C9.5 4.53043 9.28929 5.03914 8.91421 5.41421C8.53914 5.78929 8.03043 6 7.5 6C6.96957 6 6.46086 5.78929 6.08579 5.41421C5.71071 5.03914 5.5 4.53043 5.5 4C5.5 3.46957 5.71071 2.96086 6.08579 2.58579C6.46086 2.21071 6.96957 2 7.5 2ZM6 7H9C9.53043 7 10.0391 7.21071 10.4142 7.58579C10.7893 7.96086 11 8.46957 11 9V14.5H9.5V22H5.5V14.5H4V9C4 8.46957 4.21071 7.96086 4.58579 7.58579C4.96086 7.21071 5.46957 7 6 7ZM14.5 12C14.5 11.4696 14.7107 10.9609 15.0858 10.5858C15.4609 10.2107 15.9696 10 16.5 10C17.0304 10 17.5391 10.2107 17.9142 10.5858C18.2893 10.9609 18.5 11.4696 18.5 12C18.5 12.5304 18.2893 13.0391 17.9142 13.4142C17.5391 13.7893 17.0304 14 16.5 14C15.9696 14 15.4609 13.7893 15.0858 13.4142C14.7107 13.0391 14.5 12.5304 14.5 12ZM15 15H18L19.5 19H18V22H15V19H13.5L15 15Z"
+                            className=" fill-timberwolf-600"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                    <div>
+                      <span className="text-charcoal-700 text-base font-normal ">
+                        Age:{" "}
+                      </span>
+                      <span className="text-charcoal-900 text-medium font-medium ">
+                        {
+                          data.daycareSpots[data.daycareSpots.length - 1]
+                            .minAgeMonths
+                        }{" "}
+                        Months -{" "}
+                        {
+                          data.daycareSpots[data.daycareSpots.length - 1]
+                            .maxAgeYears
+                        }{" "}
+                        Years
+                      </span>
+                    </div>
+                  </div>
+                  <div className="justify-start gap-2 inline-flex">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="calendar">
+                        <path
+                          id="Vector"
+                          d="M19 19H5V8H19M16 1V3H8V1H6V3H5C3.89 3 3 3.89 3 5V19C3 19.5304 3.21071 20.0391 3.58579 20.4142C3.96086 20.7893 4.46957 21 5 21H19C19.5304 21 20.0391 20.7893 20.4142 20.4142C20.7893 20.0391 21 19.5304 21 19V5C21 3.89 20.1 3 19 3H18V1M17 12H12V17H17V12Z"
+                          className=" fill-timberwolf-600"
+                        />
+                      </g>
+                    </svg>
+                    <div>
+                      <span className="text-charcoal-700 text-base font-normal ">
+                        Starting Date:{" "}
+                      </span>
+                      <span className="text-charcoal-900 text-base font-medium ">
+                        {formatDate(
+                          data.daycareSpots[data.daycareSpots.length - 1]
+                            .startingDate
+                        )}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-col justify-center items-stretch gap-2 inline-flex">
+                  <div className="isolate -space-y-px rounded-md shadow-sm">
+                    <div className="relative rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-charcoal-300 focus-within:z-10 focus-within:ring-2 focus-within:ring-charcoal-600">
+                      <label
+                        htmlFor="child-age"
+                        className="block text-xs font-medium text-charcoal-900"
+                      >
+                        Age of your child in years
+                      </label>
+                      <input
+                        type="number"
+                        name="age of child"
+                        min={0}
+                        max={13}
+                        id="child-age"
+                        className="block w-full border-0 p-0 text-charcoal-900 placeholder:text-charcoal-400 focus:ring-0 sm:text-sm sm:leading-6"
+                        placeholder="2"
+                      />
+                    </div>
+                    <div className="relative rounded-md rounded-t-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-charcoal-300 focus-within:z-10 focus-within:ring-2 focus-within:ring-charcoal-600">
+                      <label
+                        htmlFor="cellphone-number"
+                        className="block text-xs font-medium text-charcoal-900"
+                      >
+                        Cellphone Number
+                      </label>
+                      <input
+                        type="tel"
+                        name="cellphone number"
+                        id="cellphone-number"
+                        className="block w-full border-0 p-0 text-charcoal-900 placeholder:text-charcoal-400 focus:ring-0 sm:text-sm sm:leading-6"
+                        placeholder="306-123-4567"
+                      />
+                    </div>
+                  </div>
+                  <p className="text-xs text-charcoal-500">
+                    We'll text the daycare on your behalf to let them know you
+                    are interested in a spot.
+                  </p>
+                </div>
+
+                <div className="flex-col justify-center items-stretch gap-2 inline-flex">
+                  <button
+                    type="button"
+                    className="rounded-md bg-gray-900 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal-600"
+                  >
+                    Contact Daycare
+                  </button>
+                  <div className="text-zinc-600 text-xs font-normal font-['Open Sans']">
+                    Listed:{" "}
+                    {formatDate(
+                      data.daycareSpots[data.daycareSpots.length - 1]
+                        .date_created
+                    )}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          
+
           {/* Reviews */}
           {/* <Reviews reviews={reviews} /> */}
-          
         </main>
       </div>
     </>
