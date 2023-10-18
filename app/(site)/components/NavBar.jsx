@@ -5,7 +5,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 
 const navigation = [
@@ -17,7 +17,7 @@ const navigation = [
 const userNavigation = [
   { name: "Your Profile", href: "#" },
   { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
+  { name: "Sign out", href: "#", onClick: (()=> signOut({ callbackUrl: '/' })) },
 ];
 
 function classNames(...classes) {
@@ -103,6 +103,7 @@ export default function NavBar() {
                   )}
                 </Disclosure.Button>
               </div>
+              {session && (
               <div className="hidden lg:relative lg:z-10 lg:ml-4 lg:flex lg:items-center">
                 <button
                   type="button"
@@ -114,7 +115,7 @@ export default function NavBar() {
                 </button>
 
                 {/* Profile dropdown */}
-                {session && (
+                
                 <Menu as="div" className="relative ml-4 flex-shrink-0">
                   <div>
                     <Menu.Button className="relative flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-charcoal-500 focus:ring-offset-2">
@@ -146,6 +147,7 @@ export default function NavBar() {
                                 active ? "bg-charcoal-100" : "",
                                 "block px-4 py-2 text-sm text-charcoal-700"
                               )}
+                              onClick={item.onClick}
                             >
                               {item.name}
                             </a>
@@ -155,8 +157,9 @@ export default function NavBar() {
                     </Menu.Items>
                   </Transition>
                 </Menu>
-                )}
+                
               </div>
+              )}
             </div>
           </div>
 
