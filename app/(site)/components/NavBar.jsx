@@ -49,7 +49,7 @@ export default function NavBar() {
                   />
                   {/* Desktop Logo */}
                   <Image
-                    className="h-8 w-auto hidden "
+                    className="h-8 w-auto hidden lg:block "
                     src="/landscape-logo.svg"
                     alt="Watoto.Care"
                     width={32}

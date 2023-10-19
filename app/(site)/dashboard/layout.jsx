@@ -3,6 +3,8 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import { signOut } from 'next-auth/react'
+import { useSession } from 'next-auth/react';
+import { HiMiniUser } from 'react-icons/hi2';
 import {
   Bars3Icon,
   BellIcon,
@@ -17,6 +19,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link';
+import Image from 'next/image';
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -41,6 +44,7 @@ function classNames(...classes) {
 
 export default function DashboarLayout({children}) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const {data: session, status} = useSession()
 
   return (
     <>
@@ -258,6 +262,7 @@ export default function DashboarLayout({children}) {
                   name="search"
                 />
               </form>
+              
               <div className="flex items-center gap-x-4 lg:gap-x-6">
                 <button type="button" className="-m-2.5 p-2.5 text-charcoal-400 hover:text-charcoal-500">
                   <span className="sr-only">View notifications</span>
@@ -268,17 +273,24 @@ export default function DashboarLayout({children}) {
                 <div className="hidden lg:block lg:h-6 lg:w-px lg:bg-charcoal-200" aria-hidden="true" />
 
                 {/* Profile dropdown */}
+                
                 <Menu as="div" className="relative">
                   <Menu.Button className="-m-1.5 flex items-center p-1.5">
                     <span className="sr-only">Open user menu</span>
-                    <img
+                    {!session? <HiMiniUser size={"36px"} className='h8 w-8' /> : (
+                    <Image
                       className="h-8 w-8 rounded-full bg-charcoal-50"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      src={session.user.image}
                       alt=""
+                      width={32}
+                      height={32}
                     />
+                    )}
                     <span className="hidden lg:flex lg:items-center">
                       <span className="ml-4 text-sm font-semibold leading-6 text-charcoal-900" aria-hidden="true">
-                        Tom Cook
+                        {!session? "Loading..." : (
+                        session.user.name
+                        )}
                       </span>
                       <ChevronDownIcon className="ml-2 h-5 w-5 text-charcoal-400" aria-hidden="true" />
                     </span>
@@ -313,8 +325,11 @@ export default function DashboarLayout({children}) {
                     </Menu.Items>
                   </Transition>
                 </Menu>
+                
               </div>
+             
             </div>
+            
           </div>
 
           <main className="py-10">
