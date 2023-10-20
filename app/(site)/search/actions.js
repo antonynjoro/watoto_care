@@ -4,6 +4,7 @@ import prisma from "../../libs/prismadb";
 
 export async function searchDaycares(query) {
   "use server";
+  
   const daycares = await prisma.daycares.findMany({
     where: {
       OR: [

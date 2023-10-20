@@ -51,6 +51,9 @@ const reviews = {
 export default async function dayCarePage({ params }) {
   const session = await getServerSession(authOptions);
 
+  console.log("Params: ");
+  console.log(params);
+
   const { daycareslug } = params;
 
   const apiUrl = process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
