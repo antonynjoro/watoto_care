@@ -1,4 +1,3 @@
-
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import PropTypes from "prop-types";
 import { useRouter } from "next/navigation";
@@ -38,7 +37,7 @@ export function PageHeadingWithAction({
                     aria-hidden="true"
                   />
                   <Link
-                    href={page.current ? "" : page.href}
+                    href={page.current ? null : page.href}
                     className="ml-4 group-first:ml-0 text-sm font-medium text-gray-500 hover:text-gray-700"
                     aria-current={page.current ? "page" : undefined}
                   >
@@ -130,13 +129,19 @@ export default function PageHeading({
                     className="h-5 w-5 flex-shrink-0 text-gray-400 group-first:hidden"
                     aria-hidden="true"
                   />
-                  <Link
-                    href={page.current ? "" : page.href}
-                    className="ml-4 group-first:ml-0 text-sm font-medium text-gray-500 hover:text-gray-700"
-                    aria-current={page.current ? "page" : undefined}
-                  >
-                    {page.name}
-                  </Link>
+                  {!page.current ? (
+                    <Link
+                      href={page.href}
+                      className="ml-4 group-first:ml-0 text-sm font-medium text-gray-500 hover:text-gray-700"
+                      aria-current={"page"}
+                    >
+                      {page.name}
+                    </Link>
+                  ) : (
+                    <p className="ml-4 group-first:ml-0 text-sm font-medium text-gray-500 hover:text-gray-700">
+                      {page.name}
+                    </p>
+                  )}
                 </div>
               </li>
             ))}
@@ -149,7 +154,6 @@ export default function PageHeading({
             {title}
           </h2>
         </div>
-        
       </div>
     </div>
   );
@@ -165,4 +169,3 @@ PageHeading.propTypes = {
   ).isRequired,
   title: PropTypes.string.isRequired,
 };
-

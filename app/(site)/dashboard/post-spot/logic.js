@@ -1,7 +1,7 @@
-import { toast } from "react-hot-toast";
-import { redirect } from "next/navigation";
+"use server";
+import prisma from "../../../libs/prismadb";
 
-export async function handleCreateDaycareSpot(
+export async function createDaycareSpot(
   spotsAvailable,
   minAgeMonths,
   maxAgeYears,
@@ -9,38 +9,64 @@ export async function handleCreateDaycareSpot(
   startingDate,
   ownerEmail
 ) {
+  "use server";
+  console.log("Data received: ", arguments);
 
-  try {
-    const response = await fetch("/api/post-spot", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        spotsAvailable,
-        minAgeMonths,
-        maxAgeYears,
-        pricePerMonth,
-        startingDate,
-        ownerEmail,
-      }),
-    });
+  // Verify required fields are present
+  const requiredFields = [
+    "spotsAvailable",
+    "minAgeMonths",
+    "maxAgeYears",
+    "pricePerMonth",
+    "startingDate",
+    "ownerEmail",
+  ];
 
-    if (!response.ok) {
-      throw new Error(`HTTP error ${response.status}`);
-    }
+  const params = {
+    spotsAvailable,
+    minAgeMonths,
+    maxAgeYears,
+    pricePerMonth,
+    startingDate,
+    ownerEmail,
+  };
 
-    const data = await response.json();
-    console.log("status:", response.status);
-    toast.success("Spot Created Successfully");
-    console.log("Data:", data);
-    setTimeout(() => {
-      window.location.href = "/dashboard";
-    }, 2000)
+  const missingFields = requiredFields.filter(
+    (field) => params[field] === undefined || params[field] === null
+  );
 
-  } catch (error) {
-    console.log(error);
-    toast.error(`Spot Creation Failed: ${error}`);
+  if (missingFields.length > 0) {
+    return { error: `Missing fields: ${missingFields.join(", ")}` };
   }
 
+  // Find the daycare in database
+  const daycare = await prisma.daycares.findUnique({
+    where: {
+      ownerEmail: ownerEmail,
+    },
+  });
+
+  if (!daycare) {
+    return { error: `Daycare with email ${ownerEmail} not found` };
+  }
+
+  // Update the daycare in the database
+  const daycareSpot = await prisma.daycares.update({
+    where: {
+      id: daycare.id,
+    },
+    data: {
+      daycareSpots: {
+        push: {
+          spotsAvailable: spotsAvailable,
+          minAgeMonths: minAgeMonths,
+          maxAgeYears: maxAgeYears,
+          pricePerMonth: pricePerMonth,
+          startingDate: startingDate,
+        },
+      },
+    },
+  });
+
+  return { success: daycareSpot };
 }

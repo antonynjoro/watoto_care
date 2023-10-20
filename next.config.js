@@ -14,6 +14,9 @@ const nextConfig = {
         pathname: '**',}
       ],
     },
+    experimental: {
+      serverActions: true
+    },
   };
   
   module.exports = nextConfig;

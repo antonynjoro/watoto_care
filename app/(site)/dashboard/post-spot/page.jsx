@@ -1,10 +1,10 @@
 "use client";
-import PageHeading  from "../components/PageHeadings";
-import { handleSave, handleCreateDaycareSpot } from "./logic";
+import PageHeading from "../components/PageHeadings";
+import { createDaycareSpot } from "./logic";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-
+import { toast } from "react-hot-toast";
 
 export default function postSpot() {
   const [spotsAvailable, setSpotsAvailable] = useState(1);
@@ -15,18 +15,16 @@ export default function postSpot() {
   const [pricePerMonth, setPricePerMonth] = useState(0);
   const [startingDate, setStartingDate] = useState(new Date());
 
-
-
   const handleMinAgeMonthsChange = (e) => {
-    setMinAgeMonths(parseInt(e.target.value, 10) || 0,);
+    setMinAgeMonths(parseInt(e.target.value, 10) || 0);
   };
 
   const handleMaxAgeYearsChange = (e) => {
-    setMaxAgeYears(parseInt(e.target.value, 10) || 0,);
+    setMaxAgeYears(parseInt(e.target.value, 10) || 0);
   };
 
   const handleSpotsAvailableChange = (e) => {
-    setSpotsAvailable(parseInt(e.target.value, 10) || 0,); 
+    setSpotsAvailable(parseInt(e.target.value, 10) || 0);
   };
 
   const handlePriceChange = (e) => {
@@ -38,21 +36,19 @@ export default function postSpot() {
     setStartingDate(newDate);
   };
 
-
   function formatDate(date) {
-  // Adjust time to UTC
-  const localTime = date.getTime();
-  const localOffset = date.getTimezoneOffset() * 60000; // in milliseconds
-  const utcTime = new Date(localTime + localOffset);
+    // Adjust time to UTC
+    const localTime = date.getTime();
+    const localOffset = date.getTimezoneOffset() * 60000; // in milliseconds
+    const utcTime = new Date(localTime + localOffset);
 
-  const d = utcTime,
-    month = "" + (d.getUTCMonth() + 1),
-    day = "" + d.getUTCDate(),
-    year = d.getUTCFullYear();
+    const d = utcTime,
+      month = "" + (d.getUTCMonth() + 1),
+      day = "" + d.getUTCDate(),
+      year = d.getUTCFullYear();
 
-  return [year, month.padStart(2, "0"), day.padStart(2, "0")].join("-");
-}
-
+    return [year, month.padStart(2, "0"), day.padStart(2, "0")].join("-");
+  }
 
   const route = useRouter();
 
@@ -66,6 +62,35 @@ export default function postSpot() {
     }
   }, [session]);
 
+  async function handleCreateDaycareSpot(
+    spotsAvailable,
+    minAgeMonths,
+    maxAgeYears,
+    pricePerMonth,
+    startingDate,
+    ownerEmail
+  ) {
+    const response = await createDaycareSpot(
+      spotsAvailable,
+      minAgeMonths,
+      maxAgeYears,
+      pricePerMonth,
+      startingDate,
+      ownerEmail
+    );
+
+    if (response.error) {
+      console.log(response.error);
+      toast.error(`Spot Creation Failed: ${response.error}`);
+    } else {
+      console.log("Daycare spot created", response.success);
+      toast.success("Spot Created Successfully");
+      setTimeout(() => {
+        window.location.href = "/dashboard";
+      }, 2000);
+    }
+  }
+
   return (
     <>
       <div>
@@ -76,13 +101,12 @@ export default function postSpot() {
             { name: "Dashboard", href: "/dashboard", current: false },
             { name: "Post", href: "#", current: true },
           ]}
-          
         />
       </div>
 
       {/* Form */}
       <form
-        onSubmit={(e) =>{
+        onSubmit={(e) => {
           e.preventDefault();
           handleCreateDaycareSpot(
             spotsAvailable,
@@ -91,9 +115,8 @@ export default function postSpot() {
             pricePerMonth,
             startingDate,
             ownerEmail
-          )
-        }
-        }
+          );
+        }}
       >
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
