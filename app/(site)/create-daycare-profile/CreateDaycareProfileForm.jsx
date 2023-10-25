@@ -786,10 +786,16 @@ export default function CreateDaycareProfileForm({ session }) {
                       value={dayCareData.firstHighlight}
                       onChange={(e) => {
                         setDayCareData((prevState) => ({
-                          ...prevState,
-                          highlights: [ e.target.value],
+                            ...prevState,
+                            highlights: [
+                                e.target.value,   
+                                ...prevState.highlights.slice(1), 
+                                ...prevState.highlights.slice(2),
+                                ...prevState.highlights.slice(3),              
+                                ...prevState.highlights.slice(4)     
+                            ],
                         }));
-                      }}
+                    }}
                     />
                   </div>
                   <div className="flex -space-x-px">
@@ -806,12 +812,16 @@ export default function CreateDaycareProfileForm({ session }) {
                         value={dayCareData.secondHighlight}
                         onChange={(e) => {
                           setDayCareData((prevState) => ({
-                            ...prevState,
-                            highlights: [
-                              e.target.value,
-                            ],
+                              ...prevState,
+                              highlights: [
+                                  ...prevState.highlights.slice(0),   
+                                  e.target.value,
+                                  ...prevState.highlights.slice(2),
+                                  ...prevState.highlights.slice(3),              
+                                  ...prevState.highlights.slice(4)     
+                              ],
                           }));
-                        }}
+                      }}
                       />
                     </div>
                   </div>
@@ -829,12 +839,16 @@ export default function CreateDaycareProfileForm({ session }) {
                         value={dayCareData.thirdHighlight}
                         onChange={(e) => {
                           setDayCareData((prevState) => ({
-                            ...prevState,
-                            highlights: [
-                              e.target.value,
-                            ],
+                              ...prevState,
+                              highlights: [
+                                  ...prevState.highlights.slice(0),  
+                                  ...prevState.highlights.slice(1), 
+                                  e.target.value,
+                                  ...prevState.highlights.slice(3),              
+                                  ...prevState.highlights.slice(4)     
+                              ],
                           }));
-                        }}
+                      }}
                       />
                     </div>
                   </div>
@@ -852,12 +866,16 @@ export default function CreateDaycareProfileForm({ session }) {
                         value={dayCareData.fourthHighlight}
                         onChange={(e) => {
                           setDayCareData((prevState) => ({
-                            ...prevState,
-                            highlights: [
-                              e.target.value,
-                            ],
+                              ...prevState,
+                              highlights: [
+                                  ...prevState.highlights.slice(0), 
+                                  ...prevState.highlights.slice(1), 
+                                  ...prevState.highlights.slice(2),
+                                  e.target.value,              
+                                  ...prevState.highlights.slice(4)     
+                              ],
                           }));
-                        }}
+                      }}
                       />
                     </div>
                   </div>
@@ -875,12 +893,16 @@ export default function CreateDaycareProfileForm({ session }) {
                         value={dayCareData.fifthHighlight}
                         onChange={(e) => {
                           setDayCareData((prevState) => ({
-                            ...prevState,
-                            highlights: [
-                              e.target.value,
-                            ],
+                              ...prevState,
+                              highlights: [
+                                  ...prevState.highlights.slice(0), 
+                                  ...prevState.highlights.slice(1), 
+                                  ...prevState.highlights.slice(2),              
+                                  ...prevState.highlights.slice(3),
+                                  e.target.value,  
+                              ],
                           }));
-                        }}
+                      }}
                       />
                     </div>
                   </div>

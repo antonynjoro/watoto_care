@@ -12,7 +12,7 @@ import Link from "next/link";
 
 const navigation = [
   { name: "Find a Daycare", href: "/", current: true },
-  { name: "Search by City", href: "city", current: false },
+  { name: "Search by City", href: "/city", current: false },
   // { name: 'Projects', href: '#', current: false },
   // { name: 'Calendar', href: '#', current: false },
 ];
