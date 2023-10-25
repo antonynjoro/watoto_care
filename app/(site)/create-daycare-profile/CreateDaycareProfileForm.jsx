@@ -789,10 +789,10 @@ export default function CreateDaycareProfileForm({ session }) {
                             ...prevState,
                             highlights: [
                                 e.target.value,   
-                                ...prevState.highlights.slice(1), 
-                                ...prevState.highlights.slice(2),
-                                ...prevState.highlights.slice(3),              
-                                ...prevState.highlights.slice(4)     
+                                prevState.highlights[1], 
+                                prevState.highlights[2],
+                                prevState.highlights[3],              
+                                prevState.highlights[4]     
                             ],
                         }));
                     }}
@@ -814,11 +814,11 @@ export default function CreateDaycareProfileForm({ session }) {
                           setDayCareData((prevState) => ({
                               ...prevState,
                               highlights: [
-                                  ...prevState.highlights.slice(0),   
+                                  prevState.highlights[0],   
                                   e.target.value,
-                                  ...prevState.highlights.slice(2),
-                                  ...prevState.highlights.slice(3),              
-                                  ...prevState.highlights.slice(4)     
+                                  prevState.highlights[2],
+                                  prevState.highlights[3],              
+                                  prevState.highlights[4]     
                               ],
                           }));
                       }}
@@ -841,11 +841,11 @@ export default function CreateDaycareProfileForm({ session }) {
                           setDayCareData((prevState) => ({
                               ...prevState,
                               highlights: [
-                                  ...prevState.highlights.slice(0),  
-                                  ...prevState.highlights.slice(1), 
+                                  prevState.highlights[0],  
+                                  prevState.highlights[1], 
                                   e.target.value,
-                                  ...prevState.highlights.slice(3),              
-                                  ...prevState.highlights.slice(4)     
+                                  prevState.highlights[3],              
+                                  prevState.highlights[4]     
                               ],
                           }));
                       }}
@@ -868,11 +868,11 @@ export default function CreateDaycareProfileForm({ session }) {
                           setDayCareData((prevState) => ({
                               ...prevState,
                               highlights: [
-                                  ...prevState.highlights.slice(0), 
-                                  ...prevState.highlights.slice(1), 
-                                  ...prevState.highlights.slice(2),
+                                  prevState.highlights[0], 
+                                  prevState.highlights[1], 
+                                  prevState.highlights[2],
                                   e.target.value,              
-                                  ...prevState.highlights.slice(4)     
+                                  prevState.highlights[4]     
                               ],
                           }));
                       }}
@@ -895,10 +895,10 @@ export default function CreateDaycareProfileForm({ session }) {
                           setDayCareData((prevState) => ({
                               ...prevState,
                               highlights: [
-                                  ...prevState.highlights.slice(0), 
-                                  ...prevState.highlights.slice(1), 
-                                  ...prevState.highlights.slice(2),              
-                                  ...prevState.highlights.slice(3),
+                                  prevState.highlights[0], 
+                                  prevState.highlights[1], 
+                                  prevState.highlights[2],              
+                                  prevState.highlights[3],
                                   e.target.value,  
                               ],
                           }));
