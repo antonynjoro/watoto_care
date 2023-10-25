@@ -36,6 +36,7 @@
     "uploadthing": "^5.7.1"
   },
   "devDependencies": {
+    "@types/lodash.debounce": "^4.0.8",
     "@types/node": "20.8.4",
     "@types/react": "18.2.27",
     "prettier": "^3.0.3",

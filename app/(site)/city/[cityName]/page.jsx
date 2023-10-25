@@ -15,16 +15,17 @@ export default async function CityPage({ params }) {
   console.log("daycares");
   console.log(daycares);
 
-  if (
-      daycares === undefined 
-      || daycares.length === 0 
-      || daycares === null
-    ) {
-    return <EmptyState emptyStateText={`No daycare found in ${cityName}`}/>
+  if (daycares === undefined || daycares.length === 0 || daycares === null) {
+    return (
+      <div className="min-h-full">
+        {/* Page header */}
+        <NavBar />
+        <EmptyState emptyStateText={`No daycare listed from ${cityName}`} />
+      </div>
+    );
   }
 
-  const formattedCityName =
-    cityName.charAt(0).toUpperCase() + cityName.slice(1);
+  const formattedCityName = cityName.charAt(0).toUpperCase() + cityName.slice(1);
 
   return (
     <div

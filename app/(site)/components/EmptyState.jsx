@@ -4,6 +4,7 @@
 import Image from 'next/image'
 import { type } from 'os'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 
 
@@ -19,6 +20,7 @@ function EmptyState({emptyStateText}) {
                   height={300}
                 />
                 <p>{emptyStateText}</p>
+                <div className="flex gap-6">
                 <button
                   onClick={() => router.back()}
                   className=" 
@@ -37,6 +39,25 @@ function EmptyState({emptyStateText}) {
                 >
                   Go back
                 </button>
+                <Link
+                  href="/register/daycare"
+                  className=" 
+                  mt-5
+                  flex
+                  justify-center
+                  border-gray-500 
+                  border
+                  rounded-md 
+                  bg-gray-900 
+                  hover:bg-gray-800 
+                  text-white
+                  py-2 
+                  px-8
+                "
+                >
+                  List your daycare
+                </Link>
+              </div>
               </div>
   )
 }

@@ -19,7 +19,7 @@ export default function CitySelector({ onCitySelect }) {
     if (selectedCity) {
       onCitySelect(selectedCity);  
     }
-  }, [selectedCity]);
+  }, [selectedCity, query, onCitySelect]);
 
   const fetchCities = useCallback(
     debounce((query) => {
