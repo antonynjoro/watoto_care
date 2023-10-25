@@ -68,5 +68,17 @@ export async function createDaycareSpot(
     },
   });
 
+  //  if isReadyToDisplay is false, turn it to true
+  if (!daycare.isReadyToDisplay) {
+    await prisma.daycares.update({
+      where: {
+        id: daycare.id,
+      },
+      data: {
+        isReadyToDisplay: true,
+      },
+    });
+  }
+
   return { success: daycareSpot };
 }
