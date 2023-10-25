@@ -41,6 +41,9 @@ export async function fetchAllDaycareCities() {
       },
     },
   });
+
+  console.log("citiesWithDaycares");
+  console.log(citiesWithDaycares);
   
   
 

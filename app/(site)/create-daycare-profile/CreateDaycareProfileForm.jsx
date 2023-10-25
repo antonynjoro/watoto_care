@@ -787,7 +787,7 @@ export default function CreateDaycareProfileForm({ session }) {
                       onChange={(e) => {
                         setDayCareData((prevState) => ({
                           ...prevState,
-                          highlights: [...prevState.highlights, e.target.value],
+                          highlights: [ e.target.value],
                         }));
                       }}
                     />
@@ -808,7 +808,6 @@ export default function CreateDaycareProfileForm({ session }) {
                           setDayCareData((prevState) => ({
                             ...prevState,
                             highlights: [
-                              ...prevState.highlights,
                               e.target.value,
                             ],
                           }));
@@ -832,7 +831,6 @@ export default function CreateDaycareProfileForm({ session }) {
                           setDayCareData((prevState) => ({
                             ...prevState,
                             highlights: [
-                              ...prevState.highlights,
                               e.target.value,
                             ],
                           }));
@@ -856,7 +854,6 @@ export default function CreateDaycareProfileForm({ session }) {
                           setDayCareData((prevState) => ({
                             ...prevState,
                             highlights: [
-                              ...prevState.highlights,
                               e.target.value,
                             ],
                           }));
@@ -880,7 +877,6 @@ export default function CreateDaycareProfileForm({ session }) {
                           setDayCareData((prevState) => ({
                             ...prevState,
                             highlights: [
-                              ...prevState.highlights,
                               e.target.value,
                             ],
                           }));
