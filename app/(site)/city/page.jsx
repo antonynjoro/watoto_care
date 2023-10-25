@@ -1,10 +1,21 @@
+"use client";
 import Link from "next/link";
 import { fetchAllDaycareCities } from "./actions";
 import NavBar from "../components/NavBar";
 import BreadCrumbs from "../components/BreadCrumbs";
+import { useState, useEffect } from "react";
 
-function CityPage({cities}) {
-  
+export default function CityPage() {
+  const [cities, setCities] = useState([]);
+
+  useEffect(() => {
+    fetchAllDaycareCities().then(setCities);
+  }
+  , []);
+ 
+
+
+  console.log(cities)
 
   return (
     <div
@@ -60,9 +71,3 @@ function CityPage({cities}) {
       
 }
 
-export async function getCityPage() {
-  const cities = await fetchAllDaycareCities();
-  return <CityPage cities={cities} />;
-}
-
-export default getCityPage;
