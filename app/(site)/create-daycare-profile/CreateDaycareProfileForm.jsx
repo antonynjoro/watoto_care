@@ -28,7 +28,7 @@ export default function CreateDaycareProfileForm({ session }) {
     website: "",
     licensingStatus: false,
     description: "",
-    highlights: [],
+    highlights: ["", "", "", "", ""],
     openingTime: "08:00 AM",
     closingTime: "05:00 PM",
     firstDay: "Monday",
