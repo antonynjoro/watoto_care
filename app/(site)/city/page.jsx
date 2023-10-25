@@ -3,7 +3,7 @@ import { fetchAllDaycareCities } from "./actions";
 import NavBar from "../components/NavBar";
 import BreadCrumbs from "../components/BreadCrumbs";
 
-export function CityPage({cities}) {
+function CityPage({cities}) {
   
 
   return (
