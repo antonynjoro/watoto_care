@@ -7,16 +7,20 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { ImageUploadZone, ImageUploadButton } from "../components/UploadThingWidgets";
 import DaycareImage from "./DaycareImage";
+import CitySelector from "../components/CitySelector/CitySelector";
 
 
 export default function CreateDaycareProfileForm({ session }) {
+  const router = useRouter()
+
   const [dayCareData, setDayCareData] = useState({
     name: "",
     email: "",
     phone: "",
     slug: "",
     address: "",
-    city: "",
+    cityName: "",
+    cityId: null,
     neighborhood: "",
     state: "",
     country: "CANADA",
@@ -71,7 +75,8 @@ export default function CreateDaycareProfileForm({ session }) {
       email: dayCareData.email,
       phone: dayCareData.phone,
       neighborhood: dayCareData.neighborhood,
-      city: dayCareData.city,
+      cityName: dayCareData.cityName,
+      cityId: dayCareData.cityId,
       state: dayCareData.state,
       country: dayCareData.country,
       zip: dayCareData.zip,
@@ -117,7 +122,18 @@ export default function CreateDaycareProfileForm({ session }) {
     }
   }, [session]);
 
-  const router = useRouter();
+
+  function handleCitySelect(cityObject) {
+    setDayCareData((prevState) => ({
+      ...prevState,
+      cityId: cityObject.id,
+      cityName: cityObject.cityName,
+      state: cityObject.provinceName
+    }));
+  }
+
+
+
 
 
 
@@ -589,7 +605,7 @@ export default function CreateDaycareProfileForm({ session }) {
             Details about your daycare's location and contact information.
           </p>
 
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 content-stretch">
+          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6 content-stretch">
             <div className="sm:col-span-4">
               <label
                 htmlFor="email"
@@ -669,29 +685,8 @@ export default function CreateDaycareProfileForm({ session }) {
               </p>
             </div>
 
-            <div className="sm:col-span-2 ">
-              <label
-                htmlFor="city"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                City
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="city"
-                  id="city"
-                  autoComplete="address-level2"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
-                  value={dayCareData.city}
-                  onChange={(e) =>
-                    setDayCareData((prevState) => ({
-                      ...prevState,
-                      city: e.target.value,
-                    }))
-                  }
-                />
-              </div>
+            <div className="flex col-span-2">
+              <CitySelector onCitySelect={handleCitySelect} />
             </div>
 
             <div className="sm:col-span-2">
@@ -904,7 +899,7 @@ export default function CreateDaycareProfileForm({ session }) {
         <button
           type="button"
           className="text-sm font-semibold leading-6 text-gray-900"
-          onClick={router.push("/dashboard")}
+          onClick={()=> router.push("/dashboard")}
         >
           Cancel
         </button>

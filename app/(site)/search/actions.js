@@ -21,7 +21,7 @@ export async function searchDaycares(query) {
           },
         },
         {
-          city: {
+          cityName: {
             contains: query,
             mode: "insensitive",
           },

@@ -27,10 +27,7 @@ function classNames(...classes) {
 
 export default function NavBar() {
   const  {data: session, status} =  useSession()
-  console.log("NavBar Session start")
-  console.log(status)
-  console.log(session)
-  console.log("NavBar Session end")
+
   
   return (
     <Disclosure as="header" className="bg-white shadow sticky top-0 z-50">

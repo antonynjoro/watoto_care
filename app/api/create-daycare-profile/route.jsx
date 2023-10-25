@@ -4,6 +4,8 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
     try {
         const body = await request.json();
+        const { cityId, ...restOfBody } = body;
+
 
         const requiredFields = [
             "slug",
@@ -13,7 +15,8 @@ export async function POST(request) {
             "email",
             "phone",
             "neighborhood",
-            "city",
+            "cityId",
+            "cityName",
             "state",
             "country",
             "zip",
@@ -31,7 +34,7 @@ export async function POST(request) {
             "maximumAgeYears",
         ];
 
-        const missingFields = requiredFields.filter(field => body[field] === undefined || body[field] === null);
+        const missingFields = requiredFields.filter(field => body[field] === undefined || body[field] === null || body[field] === "");
 
         if (missingFields.length > 0) {
             return new NextResponse(`Missing fields: ${missingFields.join(', ')}`, { status: 400 });
@@ -59,10 +62,18 @@ export async function POST(request) {
             return new NextResponse("Daycare listing already created with your logged in email.", { status: 400 });
         }
 
+        // Use the received city ID to connect the new daycare listing to the existing city record
+        const cityAction = {
+            connect: {
+                id: cityId,
+            },
+        };
+
         // create the daycare
         const newDaycare = await prisma.daycares.create({
             data: {
-                ...body
+                ...restOfBody,
+                city: cityAction,
             },
         });
 
@@ -70,6 +81,12 @@ export async function POST(request) {
 
     } catch (error) {
         console.log(error);
-        return new NextResponse(error.message, { status: 500 });
+        return new NextResponse("Internal server error. Please try again later.", { status: 500 });
     }
 }
+
+
+
+
+
+

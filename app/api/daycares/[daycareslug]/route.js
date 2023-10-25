@@ -6,9 +6,9 @@ import { NextResponse } from 'next/server';
 export async function GET(request) {
     const daycareslug = request.nextUrl.pathname.split('/').pop();
 
-    console.log("route api page")
-    console.log("daycareslug in the route page")
-    console.log(daycareslug)
+    console.log("daycares api page");
+    console.log("daycareslug in the route page");
+    console.log(daycareslug);
 
     try {
         const dayCareData = await prisma.daycares.findUnique({
@@ -17,17 +17,25 @@ export async function GET(request) {
             }
         });
 
+        console.log("dayCareData");
+        console.log(dayCareData);
+
         if (!dayCareData) {
-            console.log("Daycare not found")
-            return new NextResponse('Daycare not found', {status: 404});
+            console.log("Daycare not found");
+            return new NextResponse({message: 'Daycare not found'}, {status: 404});
         }
 
-        console.log("dayCareData")
-        console.log(dayCareData)
+        if (!dayCareData.isReadyToDisplay) {
+            console.log("Daycare is not ready to display");
+            return new NextResponse({message: 'Daycare not ready for display'}, {status: 404});
+        }
+
+        console.log("dayCareData");
+        console.log(dayCareData);
 
         return NextResponse.json(dayCareData);
     } catch (error) {
         console.error("Error fetching daycare data:", error);
-        return new NextResponse('Internal Server Error', {status: 500});
+        return new  NextResponse({message: 'Internal Server Error'}, {status: 500});
     }
 }

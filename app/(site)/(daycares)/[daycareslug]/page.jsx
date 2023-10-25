@@ -61,13 +61,20 @@ export default async function dayCarePage({ params }) {
 
   
   console.log(`Response from the fetch: `);
+  console.log(response);
   
 
   if (response.status === 404) {
     notFound();
+  }else if (response.status === 403) {
+    return (
+      <p className="">Not Yet Ready To Display</p>
+    )
   }
   else if (response.status === 500) {
-    throw new Error("Internal Server Error");
+    return (
+      <p className="">Internal Server Error</p>
+      );
   }
 
   const data = await response.json();
@@ -149,7 +156,7 @@ export default async function dayCarePage({ params }) {
               <div className="text-left col-span-2 ">
                 <h1 className=" text-xl text-charcoal-900 sm:text-2xl">
                   {data.licenseStatus ? "Licenced" : "Unlicenced"} Daycare in{" "}
-                  {data.neighborhood} ({data.city})
+                  {data.neighborhood} ({data.cityName})
                 </h1>
 
                 <p className="text-base text-charcoal-500">
@@ -247,7 +254,7 @@ export default async function dayCarePage({ params }) {
 
                     <div className="flex flex-col ">
                       <h3 className="text-md text-charcoal-900">
-                        {data.neighborhood}, {data.city}
+                        {data.neighborhood}, {data.cityName}
                       </h3>
                       <p className="text-sm text-charcoal-500 ">
                         1.5 miles away

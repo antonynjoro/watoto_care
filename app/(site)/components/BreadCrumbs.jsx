@@ -46,7 +46,7 @@ export default function BreadCrumbs({pages}) {
 }
 
 BreadCrumbs.propTypes = {
-    Pages: PropTypes.arrayOf(
+    pages: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
         href: PropTypes.string.isRequired,

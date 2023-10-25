@@ -5,9 +5,9 @@ import { MdOutlineChildCare } from "react-icons/md";
 import { HiOutlineTicket } from "react-icons/hi";
 import { TbLicense, TbLicenseOff } from "react-icons/tb";
 
-function DaycareCard({ daycare }) {
+export default function DaycareCard({ daycare }) {
   return (
-    <li
+    <div
       key={daycare.id}
       className="
                 border 
@@ -59,7 +59,7 @@ function DaycareCard({ daycare }) {
           <div className="flex flex-col">
             <h2 className="text-xl">{daycare.name}</h2>
             <p className="text-sm text-gray-500">
-              {daycare.neighborhood} • {daycare.city} • {daycare.state}
+              {daycare.neighborhood} • {daycare.cityName} • {daycare.state}
             </p>
           </div>
 
@@ -111,7 +111,7 @@ function DaycareCard({ daycare }) {
 
           {/* Action */}
           <div className="flex flex-col gap-1">
-            <Link
+            <button
               href={`/${daycare.slug}`}
               className=" 
                             flex
@@ -127,7 +127,7 @@ function DaycareCard({ daycare }) {
                           "
             >
               View Details
-            </Link>
+            </button>
             <p className="text-sm text-gray-400">
               Posted:{" "}
               {formatDate(
@@ -138,8 +138,8 @@ function DaycareCard({ daycare }) {
           </div>
         </div>
       </Link>
-    </li>
+    </div>
   );
 }
 
-export default DaycareCard;
+
