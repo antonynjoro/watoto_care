@@ -47,7 +47,7 @@ export default async function CityPage({ params }) {
           <div className="pb-6">
             <BreadCrumbs
               pages={[
-                { name: "Cities", href: "/cities", current: false },
+                { name: "Cities", href: "/city", current: false },
                 { name: formattedCityName, href: "#", current: true },
               ]}
             />
