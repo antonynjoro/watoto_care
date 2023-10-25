@@ -3,10 +3,8 @@ import { fetchAllDaycareCities } from "./actions";
 import NavBar from "../components/NavBar";
 import BreadCrumbs from "../components/BreadCrumbs";
 
-async function CityPage() {
-  const cities = await fetchAllDaycareCities()
-
-  console.log(cities)
+export function CityPage({cities}) {
+  
 
   return (
     <div
@@ -62,4 +60,9 @@ async function CityPage() {
       
 }
 
-export default CityPage
+export async function getCityPage() {
+  const cities = await fetchAllDaycareCities();
+  return <CityPage cities={cities} />;
+}
+
+export default getCityPage;
