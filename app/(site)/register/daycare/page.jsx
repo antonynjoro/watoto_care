@@ -4,6 +4,8 @@ import RegisterForm from "../RegisterForm";
 import GoogleLoginButton from "../../components/GoogleLoginButton";
 import { redirect } from 'next/navigation'
 import Link from "next/link";
+import Image from "next/image";
+import SplashImage from "../../components/SplashImage";
 
 
 
@@ -26,29 +28,23 @@ export default async function Register() {
         <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
             <div>
-              <img
-                className="h-10 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=flame&shade=600"
-                alt="Your Company"
+              <Image
+                className="h-20 w-auto"
+                src="/logo.svg"
+                alt="Watoto Care Logo"
+                width={500}
+                height={500}
               />
               <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">
                 Create an Account
               </h2>
               <p className="mt-2 text-sm leading-6 text-gray-500">
-                Want to list your Daycare?{" "}
-                <Link
-                  href="/create-daycare-profile"
-                  className="font-semibold text-flame-600 hover:text-flame-500"
-                >
-                  Register for Free Here.
-                </Link>
+                Let's get started by creating your account.
               </p>
             </div>
 
             <div className="mt-10">
-              <div>
-                <RegisterForm />
-              </div>
+             
 
               <div className="mt-10">
                 <div className="relative">
@@ -60,12 +56,12 @@ export default async function Register() {
                   </div>
                   <div className="relative flex justify-center text-sm font-medium leading-6">
                     <span className="bg-white px-6 text-gray-900">
-                      Or continue with
+                      Register with
                     </span>
                   </div>
                 </div>
 
-                <div className="mt-6 grid grid-cols-2 gap-4">
+                <div className="mt-6 ">
                   <GoogleLoginButton callbackUrl={"/create-daycare-profile"}/>
                 </div>
               </div>
@@ -73,11 +69,7 @@ export default async function Register() {
           </div>
         </div>
         <div className="relative hidden w-0 flex-1 lg:block">
-          <img
-            className="absolute inset-0 h-full w-full object-cover"
-            src="https://images.unsplash.com/photo-1496917756835-20cb06e75b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"
-            alt=""
-          />
+          <SplashImage />
         </div>
       </div>
     </>
