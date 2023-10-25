@@ -7,17 +7,18 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
 import SearchBar from "./SearchBar";
+import Link from "next/link";
 
 
 const navigation = [
-  { name: "Find a Daycare", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
+  { name: "Find a Daycare", href: "/", current: true },
+  { name: "Search by City", href: "city", current: false },
   // { name: 'Projects', href: '#', current: false },
   // { name: 'Calendar', href: '#', current: false },
 ];
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
+  { name: "Post a daycare spot", href: "/dashboard/post-spot" },
+  { name: "Dashboard", href: "/dashboard" },
   { name: "Sign out", href: "#", onClick: (()=> signOut({ callbackUrl: '/' })) },
 ];
 
@@ -37,6 +38,9 @@ export default function NavBar() {
             <div className="relative flex h-16 justify-between">
               <div className="relative z-10 flex px-2 lg:px-0">
                 <div className="flex flex-shrink-0 items-center">
+                  <Link
+                    href="/"
+                  >
                   {/* Mobile Logo */}
                   <Image
                     className="h-8 w-auto lg:hidden "
@@ -53,6 +57,7 @@ export default function NavBar() {
                     width={32}
                     height={32}
                   />
+                  </Link>
                 </div>
               </div>
 
