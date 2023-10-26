@@ -5,15 +5,18 @@ import NavBar from "../components/NavBar";
 import BreadCrumbs from "../components/BreadCrumbs";
 import { useState, useEffect } from "react";
 
+
+
 export default function CityPage() {
   const [cities, setCities] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchAllDaycareCities().then(setCities);
+    fetchAllDaycareCities().then(setCities).then(() => setLoading(false));
   }
   , []);
  
-
+  
 
   console.log(cities)
 
@@ -47,6 +50,11 @@ export default function CityPage() {
           </div>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3">
+        {loading && (
+          <p className="text-gray-900 font-semibold text-lg">
+            Loading...
+          </p>
+        )}
         <ul className="flex flex-col space-y-4">
         {cities.map(city => {
         return (
