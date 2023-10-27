@@ -407,7 +407,10 @@ export default async function dayCarePage({ params }) {
                     </div>
                   </div>
                 </div>
-                <div className="flex-col justify-center items-stretch gap-2 inline-flex">
+
+                {/* Hiding form for now */}
+
+                {/* <div className="flex-col justify-center items-stretch gap-2 inline-flex">
                   <div className="isolate -space-y-px rounded-md shadow-sm">
                     <div className="relative rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-charcoal-300 focus-within:z-10 focus-within:ring-2 focus-within:ring-charcoal-600">
                       <label
@@ -462,7 +465,14 @@ export default async function dayCarePage({ params }) {
                         .date_created
                     )}
                   </div>
-                </div>
+                </div> */}
+                <div className="text-zinc-600 text-xs font-normal font-['Open Sans']">
+                    Spot Listed:{" "}
+                    {formatDate(
+                      data.daycareSpots[data.daycareSpots.length - 1]
+                        .date_created
+                    )}
+                  </div>
               </div>
 
               {/* Action Card Mobile */}
@@ -608,7 +618,9 @@ export default async function dayCarePage({ params }) {
                     </div>
                   </div>
                 </div>
-                <form className="flex flex-col gap-4">
+
+                {/* hiding the form for now */}
+                {/* <form className="flex flex-col gap-4">
                   <div className="flex-col justify-center items-stretch gap-2 inline-flex">
                     <div className="isolate -space-y-px rounded-md shadow-sm">
                       <div className="relative rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-charcoal-300 focus-within:z-10 focus-within:ring-2 focus-within:ring-charcoal-600">
@@ -665,7 +677,7 @@ export default async function dayCarePage({ params }) {
                       )}
                     </div>
                   </div>
-                </form>
+                </form> */}
               </div>
             </div>
           </div>
