@@ -41,7 +41,7 @@ function HomePage() {
             Find a daycare in your city
             <CitySelector onCitySelect={onChooseCity} showLabel={false} />
             <div className="py-6">
-              <h2 className="pb-4 text-2xl">Latest daycares in Canada</h2>
+              <h2 className="pb-4 text-2xl">Daycares in Saskatoon</h2>
               <DaycareList daycares={daycares} />
             </div>
             <CallToAction
