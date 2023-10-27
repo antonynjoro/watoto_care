@@ -678,6 +678,13 @@ export default async function dayCarePage({ params }) {
                     </div>
                   </div>
                 </form> */}
+                <div className="text-zinc-600 text-xs font-normal font-['Open Sans']">
+                      Listed:{" "}
+                      {formatDate(
+                        data.daycareSpots[data.daycareSpots.length - 1]
+                          .date_created
+                      )}
+                    </div>
               </div>
             </div>
           </div>
