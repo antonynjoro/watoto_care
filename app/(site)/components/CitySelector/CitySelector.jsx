@@ -9,7 +9,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function CitySelector({ onCitySelect }) {
+export default function CitySelector({ onCitySelect, showLabel = true }) {
   const [query, setQuery] = useState("");
   const [selectedCity, setSelectedCity] = useState(null);
   const [cities, setCities] = useState([]); // List of cities
@@ -61,7 +61,7 @@ export default function CitySelector({ onCitySelect }) {
   return (
     <Combobox as="div" className=" w-full" value={selectedCity} onChange={setSelectedCity}>
       <Combobox.Label className="block text-sm font-medium leading-6 text-gray-900">
-        City
+        {showLabel && "City"}
       </Combobox.Label>
       <div className="relative mt-2">
         <Combobox.Input

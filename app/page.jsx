@@ -38,8 +38,11 @@ function HomePage() {
           {/* Main container */}
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             Find a daycare in your city
-            <CitySelector onCitySelect={onChooseCity} />
+            <CitySelector onCitySelect={onChooseCity} showLabel={false} />
             <div className="py-6">
+              <h2 className="pb-4 text-2xl">
+                Latest daycares in Canada
+              </h2>
               <DaycareList daycares={daycares} />
             </div>
           </div>
