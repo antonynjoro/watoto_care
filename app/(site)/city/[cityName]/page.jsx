@@ -6,6 +6,7 @@ import DaycareCard from "../../components/DaycareCard";
 import getCityDaycares from "../actions";
 import BreadCrumbs from "../../components/BreadCrumbs";
 import EmptyState from "../../components/EmptyState";
+import DaycaresList from "../../components/DaycaresList";
 
 export default async function CityPage({ params }) {
   const { cityName } = params;
@@ -25,7 +26,8 @@ export default async function CityPage({ params }) {
     );
   }
 
-  const formattedCityName = cityName.charAt(0).toUpperCase() + cityName.slice(1);
+  const formattedCityName =
+    cityName.charAt(0).toUpperCase() + cityName.slice(1);
 
   return (
     <div
@@ -57,11 +59,7 @@ export default async function CityPage({ params }) {
               </h2>
             </div>
           </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3">
-            {daycares.map((daycare) => (
-              <DaycareCard daycare={daycare} />
-            ))}
-          </div>
+          <DaycaresList daycares={daycares} />
         </div>
       </main>
     </div>

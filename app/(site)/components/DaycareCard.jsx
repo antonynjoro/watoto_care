@@ -24,12 +24,12 @@ export default function DaycareCard({ daycare }) {
     >
       <Link
         href={`/${daycare.slug}`}
-        className="grid md:grid-cols-3 md:auto-cols-max relative h-full"
+        className="grid md:grid-cols-3 md:auto-cols-max relative h-full "
       >
         <Image
           src={daycare.images[0]}
           alt={daycare.name}
-          className="h-full object-cover bg-center bg-no-repeat "
+          className="h-full  object-cover bg-center bg-no-repeat "
           width={600}
           height={600}
         />
@@ -54,7 +54,7 @@ export default function DaycareCard({ daycare }) {
             }
         </div>
 
-        <div className="flex flex-col gap-5 p-5 col-span-2">
+        <div className="flex flex-col gap-5 p-5 md:col-span-2">
           {/* Heading and meta */}
           <div className="flex flex-col">
             <h2 className="text-xl">{daycare.name}</h2>

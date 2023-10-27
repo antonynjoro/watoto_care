@@ -2,13 +2,11 @@
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { searchDaycares } from "./actions";
-import Image from "next/image";
 import NavBar from "../components/NavBar";
 import EmptyState from "../components/EmptyState";
-import { format } from "path";
-import Link from "next/link";
 import DaycareCard from "../components/DaycareCard";
 import BreadCrumbs from "../components/BreadCrumbs";
+import DaycaresList from "../components/DaycaresList";
 
 
 
@@ -57,11 +55,7 @@ function SearchPage() {
             (daycares.length === 0 ? (
               <EmptyState emptyStateText={"No Daycares Found"} />
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-4">
-                {daycares.map((daycare) => (
-                  <DaycareCard daycare={daycare} />
-                ))}
-              </div>
+              <DaycaresList daycares={daycares}/>
             ))}
         </div>
       </main>

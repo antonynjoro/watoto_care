@@ -4,6 +4,7 @@ import { useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 import { CheckCircleIcon } from "@heroicons/react/20/solid";
 import { signIn } from "next-auth/react"
+import Link from "next/link";
 
 const registerOptions = [
   {
@@ -28,9 +29,9 @@ export default function Page() {
   );
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-screen flex items-center bg-slate-50">
+    <div className="mx-auto  px-4 sm:px-6 lg:px-8 min-h-screen flex items-center bg-timberwolf-50 ">
       {/* We've used 3xl here, but feel free to try other max-widths based on your needs */}
-      <div className="mx-auto max-w-3xl bg-white p-10 border border-gray-200 rounded-md flex flex-col items-stretch">
+      <div className="mx-auto max-w-3xl bg-white p-10 border border-gray-200 rounded-md flex flex-col items-stretch shadow-sm">
         <RadioGroup
           value={selectedRegisterOption}
           onChange={setSelectedRegisterOption}
@@ -100,7 +101,7 @@ export default function Page() {
             ))}
           </div>
         </RadioGroup>
-        <a
+        <Link
           className="py-3 px-8 text-white bg-gray-900 hover:bg-gray-700 rounded-md mt-8 text-center"
           href={
             selectedRegisterOption === registerOptions[0]
@@ -109,12 +110,12 @@ export default function Page() {
           }
         >
           Create Account
-        </a>
+        </Link>
         <p className="text-gray-600 text-center w-full pt-4">
           Already have an account 
-          <a href="/login" className="pl-1 text-gray-900 hover:text-gray-700 hover:font-bold">
+          <Link href="/login" className="pl-1 text-gray-900 hover:text-gray-700 hover:font-bold">
             Sign In
-          </a>
+          </Link>
         </p>
       </div>
     </div>
