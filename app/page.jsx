@@ -4,6 +4,7 @@ import NavBar from "./(site)/components/NavBar";
 import CitySelector from "./(site)/components/CitySelector/CitySelector";
 import DaycareList from "./(site)/components/DaycaresList";
 import getAllDaycares from "./global-actions/getAllDaycares";
+import CallToAction from "./(site)/components/CallToAction";
 
 function HomePage() {
   const [chosenCity, setChosenCity] = useState(null);
@@ -40,12 +41,17 @@ function HomePage() {
             Find a daycare in your city
             <CitySelector onCitySelect={onChooseCity} showLabel={false} />
             <div className="py-6">
-              <h2 className="pb-4 text-2xl">
-                Latest daycares in Canada
-              </h2>
+              <h2 className="pb-4 text-2xl">Latest daycares in Canada</h2>
               <DaycareList daycares={daycares} />
             </div>
+            <CallToAction
+            heading="Are you a daycare owner?"
+            subheading="Register your daycare to get discovered by parents in your area."
+            primaryButtonText="Register your daycare"
+            primaryButtonLink="/register/daycare"
+          />
           </div>
+          
         </main>
       </div>
     </>
