@@ -45,13 +45,14 @@ function HomePage() {
               <DaycareList daycares={daycares} />
             </div>
             <CallToAction
-            heading="Are you a daycare owner?"
-            subheading="Register your daycare to get discovered by parents in your area."
-            primaryButtonText="Register your daycare"
-            primaryButtonLink="/register/daycare"
-          />
+              heading="Are you a daycare owner?"
+              subheading="Register your daycare to get discovered by parents in your area."
+              primaryButtonText="Register your daycare"
+              primaryButtonLink="/register/daycare"
+              secondaryButtonText="Learn more"
+              secondaryButtonLink="/about"
+            />
           </div>
-          
         </main>
       </div>
     </>

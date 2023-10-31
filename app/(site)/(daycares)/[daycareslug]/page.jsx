@@ -305,7 +305,8 @@ export default async function dayCarePage({ params }) {
               >
                 <h3>
                   <span className=" text-2xl font-medium text-charcoal-900">
-                    $800 CAD
+                    ${data.daycareSpots[data.daycareSpots.length - 1]
+                            .pricePerMonth} CAD
                   </span>
                   <span className="text-l font-medium text-charcoal-500">
                     /month
